@@ -22,12 +22,16 @@ const AppLibrary = () => {
   ];
 
   return (
-    <div className="relative min-h-full overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <img src={bgLibrary} alt="" className="w-full h-full object-cover opacity-25" />
-        <div className="absolute inset-0 bg-background/50" />
-      </div>
-      <div className="px-6 md:px-10 py-8 relative">
+    <div
+      className="min-h-full"
+      style={{
+        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.6), hsl(40 20% 95% / 0.6)), url(${bgLibrary})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="px-6 md:px-10 py-8">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

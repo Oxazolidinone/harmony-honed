@@ -38,12 +38,16 @@ const AppSearch = () => {
   const hasResults = results.songs.length > 0 || results.albums.length > 0 || results.artists.length > 0;
 
   return (
-    <div className="relative min-h-full overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <img src={bgSearch} alt="" className="w-full h-full object-cover opacity-25" />
-        <div className="absolute inset-0 bg-background/50" />
-      </div>
-      <div className="px-6 md:px-10 py-8 relative">
+    <div
+      className="min-h-full"
+      style={{
+        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.6), hsl(40 20% 95% / 0.6)), url(${bgSearch})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="px-6 md:px-10 py-8">
       {/* Search bar */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative mb-8">
         <SearchIcon size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />

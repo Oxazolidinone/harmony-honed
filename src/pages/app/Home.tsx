@@ -19,12 +19,16 @@ const AppHome = () => {
   const topSongs = [...allSongs].sort((a, b) => b.playCount - a.playCount).slice(0, 5);
 
   return (
-    <div className="relative min-h-full overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <img src={bgHome} alt="" className="w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-background/50" />
-      </div>
-      <div className="px-6 md:px-10 py-8 relative">
+    <div
+      className="min-h-full"
+      style={{
+        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.55), hsl(40 20% 95% / 0.55)), url(${bgHome})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="px-6 md:px-10 py-8">
       {/* Greeting */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
