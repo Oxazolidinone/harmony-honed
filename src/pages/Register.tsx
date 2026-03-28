@@ -2,17 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { motion } from "framer-motion";
-import { Music, Disc3, Headphones } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-
-const floatingIcons = [
-  { Icon: Disc3, x: "20%", y: "25%", delay: 0.3, size: 20 },
-  { Icon: Music, x: "70%", y: "12%", delay: 1, size: 18 },
-  { Icon: Headphones, x: "80%", y: "65%", delay: 1.8, size: 22 },
-  { Icon: Music, x: "25%", y: "75%", delay: 2, size: 14 },
-  { Icon: Disc3, x: "55%", y: "50%", delay: 0.6, size: 16 },
-  { Icon: Headphones, x: "40%", y: "18%", delay: 1.4, size: 18 },
-];
+import bgAuth from "@/assets/bg-auth.jpg";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -56,34 +47,21 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Right - form with decorative elements */}
-      <div className="flex-1 relative overflow-hidden bg-background">
-        {/* Floating music icons */}
-        {floatingIcons.map((item, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-primary/10"
-            style={{ left: item.x, top: item.y }}
-            animate={{
-              y: [0, -12, 0],
-              rotate: [0, -8, 8, 0],
-              opacity: [0.06, 0.14, 0.06],
-            }}
-            transition={{
-              duration: 6 + i,
-              repeat: Infinity,
-              delay: item.delay,
-              ease: "easeInOut",
-            }}
-          >
-            <item.Icon size={item.size} />
-          </motion.div>
-        ))}
+      {/* Right - form */}
+      <div className="flex-1 relative overflow-hidden">
+        {/* Background image with warm overlay */}
+        <div className="absolute inset-0">
+          <img src={bgAuth} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+        </div>
 
-        {/* Decorative circles */}
-        <div className="absolute -top-24 -left-24 w-56 h-56 rounded-full bg-primary/5" />
-        <div className="absolute -bottom-28 -right-28 w-52 h-52 rounded-full bg-accent/5" />
-        <div className="absolute bottom-1/4 left-8 w-1 h-24 bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
+        {/* Decorative accent lines */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-primary/30 to-transparent" />
+        <div className="absolute bottom-0 left-10 w-px h-28 bg-gradient-to-t from-primary/20 to-transparent hidden lg:block" />
+
+        {/* Warm glow accents */}
+        <div className="absolute top-16 left-6 w-36 h-36 rounded-full bg-primary/8 blur-3xl" />
+        <div className="absolute bottom-24 right-10 w-28 h-28 rounded-full bg-accent/10 blur-2xl" />
 
         {/* Form */}
         <div className="relative z-10 flex items-center justify-center min-h-screen px-6">
@@ -93,7 +71,7 @@ const Register = () => {
             transition={{ duration: 0.6 }}
             className="w-full max-w-sm"
           >
-            <a href="/" className="font-display text-2xl tracking-[0.3em] text-foreground block mb-12">
+            <a href="/" className="font-display text-2xl tracking-[0.3em] text-foreground block mb-10">
               NHACCUATU
             </a>
 
@@ -105,7 +83,7 @@ const Register = () => {
               type="button"
               onClick={handleGoogleRegister}
               disabled={loading}
-              className="w-full flex items-center justify-center gap-3 border border-border px-4 py-3 text-sm font-body hover:bg-card/60 transition-colors rounded-lg mb-6 disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-3 bg-card/70 backdrop-blur border border-border/60 px-4 py-3 text-sm font-body hover:bg-card transition-colors rounded-xl mb-6 disabled:opacity-50 shadow-sm"
             >
               <svg width="18" height="18" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -116,11 +94,10 @@ const Register = () => {
               Đăng ký với Google
             </button>
 
-            {/* Divider */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-border/60" />
               <span className="text-xs text-foreground/40 font-body tracking-wider">HOẶC</span>
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-border/60" />
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -130,7 +107,7 @@ const Register = () => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-transparent border border-border px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-lg font-body"
+                  className="w-full bg-card/50 backdrop-blur border border-border/60 px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-xl font-body"
                   placeholder="Nguyễn Văn A"
                   required
                 />
@@ -141,7 +118,7 @@ const Register = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border border-border px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-lg font-body"
+                  className="w-full bg-card/50 backdrop-blur border border-border/60 px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-xl font-body"
                   placeholder="you@example.com"
                   required
                 />
@@ -152,7 +129,7 @@ const Register = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-transparent border border-border px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-lg font-body"
+                  className="w-full bg-card/50 backdrop-blur border border-border/60 px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-xl font-body"
                   placeholder="••••••••"
                   required
                 />
@@ -160,7 +137,7 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-foreground text-background py-3 text-sm tracking-wider hover:bg-foreground/90 transition-colors disabled:opacity-50 rounded-lg font-body"
+                className="w-full bg-foreground text-background py-3 text-sm tracking-wider hover:bg-foreground/90 transition-colors disabled:opacity-50 rounded-xl font-body shadow-md"
               >
                 {loading ? "ĐANG XỬ LÝ..." : "ĐĂNG KÝ"}
               </button>
@@ -173,7 +150,7 @@ const Register = () => {
               </Link>
             </p>
 
-            <p className="text-center text-[10px] tracking-[0.4em] text-foreground/20 mt-12 font-body">
+            <p className="text-center text-[10px] tracking-[0.4em] text-foreground/20 mt-10 font-body">
               DISCOVER · CREATE · ENJOY
             </p>
           </motion.div>
