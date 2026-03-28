@@ -53,7 +53,7 @@ const AppHome = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05, duration: 0.4 }}
               onClick={() => playSong(song, recentlyPlayed)}
-              className="flex items-center gap-3 bg-card/60 hover:bg-card transition-colors group text-left"
+              className="flex items-center gap-3 bg-card/70 backdrop-blur-sm hover:bg-card transition-colors group text-left"
             >
               <img src={song.album.image} alt="" className="w-12 h-12 object-cover flex-shrink-0" />
               <div className="min-w-0 flex-1 pr-2">
@@ -130,7 +130,7 @@ const AppHome = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.05, duration: 0.4 }}
               onClick={() => playSong(song, topSongs)}
-              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/50 transition-colors group text-left"
+              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
             >
               <span className="text-xs text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
               <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />

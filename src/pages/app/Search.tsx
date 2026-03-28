@@ -56,7 +56,7 @@ const AppSearch = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Tìm bài hát, nghệ sĩ, album..."
-          className="w-full bg-card/60 border border-border pl-12 pr-4 py-4 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+          className="w-full bg-card/70 backdrop-blur-sm border border-border pl-12 pr-4 py-4 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
         />
       </motion.div>
 
@@ -134,7 +134,7 @@ const AppSearch = () => {
               <button
                 key={song.id}
                 onClick={() => playSong(song, results.songs)}
-                className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/50 transition-colors group text-left"
+                className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
               >
                 <div className="w-10 h-10 relative flex-shrink-0">
                   <img src={song.album.image} alt="" className="w-full h-full object-cover" />

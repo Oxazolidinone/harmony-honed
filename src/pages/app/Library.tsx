@@ -80,7 +80,7 @@ const AppLibrary = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => navigate(`/app/playlist/${pl.id}`)}
-                className="flex items-center gap-4 p-3 hover:bg-card/60 transition-colors cursor-pointer group"
+                className="flex items-center gap-4 p-3 hover:bg-card/70 backdrop-blur-sm transition-colors cursor-pointer group"
               >
                 <img src={pl.image} alt={pl.name} className="w-14 h-14 object-cover flex-shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -103,7 +103,7 @@ const AppLibrary = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.03 }}
               onClick={() => playSong(song, likedSongs)}
-              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/50 transition-colors group text-left"
+              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
             >
               <Heart size={12} className="text-primary flex-shrink-0" fill="currentColor" />
               <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
@@ -127,7 +127,7 @@ const AppLibrary = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.03 }}
               onClick={() => playSong(song, recentlyPlayed)}
-              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/50 transition-colors group text-left"
+              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
             >
               <span className="text-xs text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
               <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
