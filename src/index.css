@@ -34,7 +34,7 @@
     --input: 30 12% 75%;
     --ring: 28 55% 35%;
 
-    --radius: 0rem;
+    --radius: 0.75rem;
 
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Space Grotesk', sans-serif;
