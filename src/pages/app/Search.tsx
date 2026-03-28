@@ -38,10 +38,10 @@ const AppSearch = () => {
   const hasResults = results.songs.length > 0 || results.albums.length > 0 || results.artists.length > 0;
 
   return (
-    <div className="relative min-h-full">
-      <div className="fixed inset-0 pointer-events-none -z-10">
+    <div className="relative min-h-full overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
         <img src={bgSearch} alt="" className="w-full h-full object-cover opacity-25" />
-        <div className="absolute inset-0 bg-background/60" />
+        <div className="absolute inset-0 bg-background/50" />
       </div>
       <div className="px-6 md:px-10 py-8 relative">
       {/* Search bar */}
