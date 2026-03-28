@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { User, Crown, Bell, Shield, LogOut, Headphones, Palette } from "lucide-react";
+import { User, Crown, Bell, Shield, LogOut, Headphones } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import ThemeSwitcher from "@/components/app/ThemeSwitcher";
 
 const AppSettings = () => {
   const { user, logout } = useAuth();
@@ -90,10 +91,26 @@ const AppSettings = () => {
           <div className="flex-1 h-[0.5px] bg-border/20" />
         </div>
 
-        {/* Settings list */}
+        {/* Theme */}
         <section className="mb-10">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-primary/60 text-xs font-body">03</span>
+            <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">PHONG CÁCH GIAO DIỆN</h2>
+          </div>
+          <ThemeSwitcher />
+        </section>
+
+        {/* Decorative separator */}
+        <div className="flex items-center gap-3 my-8">
+          <div className="flex-1 h-[0.5px] bg-border/20" />
+          <span className="text-[8px] text-primary/20">✦</span>
+          <div className="flex-1 h-[0.5px] bg-border/20" />
+        </div>
+
+        {/* Settings list */}
+        <section className="mb-10">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-primary/60 text-xs font-body">04</span>
             <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">TÙY CHỌN</h2>
           </div>
           <div className="bg-card/40 backdrop-blur-sm rounded-2xl overflow-hidden">
@@ -102,7 +119,6 @@ const AppSettings = () => {
               { icon: Bell, label: "Thông báo", desc: "Quản lý thông báo push và email" },
               { icon: Shield, label: "Bảo mật", desc: "Đổi mật khẩu và xác thực 2 bước" },
               { icon: User, label: "Quyền riêng tư", desc: "Quản lý dữ liệu cá nhân" },
-              { icon: Palette, label: "Giao diện", desc: "Tùy chỉnh theme và hiển thị" },
             ].map((item) => (
               <button
                 key={item.label}

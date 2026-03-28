@@ -61,6 +61,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "section-overlay": "hsl(var(--section-overlay))",
       },
       borderRadius: {
         lg: "var(--radius)",
