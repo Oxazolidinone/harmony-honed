@@ -35,7 +35,7 @@ export function AppSidebar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border bg-card/50">
+    <Sidebar collapsible="icon" className="border-r border-border/50 bg-card/30 backdrop-blur-sm">
       <SidebarContent className="pt-6">
         {/* Logo */}
         <div className="px-4 mb-8">
@@ -59,7 +59,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/app"}
-                      className={`hover:bg-muted/50 ${isActive(item.url) ? "bg-muted text-primary" : ""}`}
+                      className={`rounded-xl hover:bg-muted/50 ${isActive(item.url) ? "bg-muted text-primary" : ""}`}
                       activeClassName="bg-muted text-primary font-medium"
                     >
                       <item.icon className="mr-2 h-4 w-4" />
@@ -83,7 +83,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <NavLink
                       to={item.url}
-                      className="hover:bg-muted/50"
+                      className="rounded-xl hover:bg-muted/50"
                       activeClassName="bg-muted text-primary font-medium"
                     >
                       <item.icon className="mr-2 h-4 w-4" />
@@ -98,7 +98,7 @@ export function AppSidebar() {
 
         {/* Premium upsell */}
         {user?.plan === "free" && !collapsed && (
-          <div className="mx-3 mt-6 p-4 border border-primary/20 bg-primary/5">
+          <div className="mx-3 mt-6 p-4 border border-primary/20 bg-primary/5 rounded-2xl">
             <div className="flex items-center gap-2 mb-2">
               <Crown size={14} className="text-primary" />
               <span className="text-xs font-medium text-foreground">Nâng cấp Premium</span>
@@ -108,7 +108,7 @@ export function AppSidebar() {
             </p>
             <button
               onClick={() => navigate("/app/settings")}
-              className="w-full text-xs py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors tracking-wider"
+              className="w-full text-xs py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors tracking-wider rounded-xl"
             >
               TÌM HIỂU THÊM
             </button>
@@ -118,8 +118,8 @@ export function AppSidebar() {
 
       <SidebarFooter className="p-3">
         {user && (
-          <div className="flex items-center gap-3">
-            <img src={user.avatar} alt="" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+          <div className="flex items-center gap-3 p-2 rounded-xl">
+            <img src={user.avatar} alt="" className="w-9 h-9 rounded-full object-cover flex-shrink-0 ring-2 ring-border/30" />
             {!collapsed && (
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-medium text-foreground truncate">{user.name}</p>

@@ -35,7 +35,7 @@ const AppHome = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-         <h1 className="font-display text-4xl md:text-5xl font-light mb-2">{greetingTime()}</h1>
+        <h1 className="font-display text-4xl md:text-5xl font-light mb-2">{greetingTime()}</h1>
         <p className="text-foreground/60 text-base">Tiếp tục hành trình âm nhạc của bạn</p>
       </motion.div>
 
@@ -53,12 +53,12 @@ const AppHome = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05, duration: 0.4 }}
               onClick={() => playSong(song, recentlyPlayed)}
-              className="flex items-center gap-3 bg-card/70 backdrop-blur-sm hover:bg-card transition-colors group text-left"
+              className="flex items-center gap-3 bg-card/60 backdrop-blur-md rounded-xl hover:bg-card/80 transition-all hover:scale-[1.02] group text-left overflow-hidden"
             >
-              <img src={song.album.image} alt="" className="w-12 h-12 object-cover flex-shrink-0" />
-              <div className="min-w-0 flex-1 pr-2">
-                <p className="text-xs font-medium truncate group-hover:text-primary transition-colors">{song.title}</p>
-                <p className="text-[10px] text-muted-foreground truncate">{song.artist.name}</p>
+              <img src={song.album.image} alt="" className="w-14 h-14 object-cover flex-shrink-0 rounded-l-xl" />
+              <div className="min-w-0 flex-1 pr-3">
+                <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">{song.title}</p>
+                <p className="text-xs text-muted-foreground truncate">{song.artist.name}</p>
               </div>
             </motion.button>
           ))}
@@ -68,7 +68,7 @@ const AppHome = () => {
       {/* Playlists for you */}
       <section className="mt-12">
         <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium mb-4">DÀNH CHO BẠN</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {playlists.map((pl, i) => (
             <motion.div
               key={pl.id}
@@ -78,11 +78,11 @@ const AppHome = () => {
               onClick={() => navigate(`/app/playlist/${pl.id}`)}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-square overflow-hidden mb-3">
+              <div className="relative aspect-square overflow-hidden mb-3 rounded-2xl shadow-md">
                 <img src={pl.image} alt={pl.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-foreground/80 text-background flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play size={16} className="ml-0.5" />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center rounded-2xl">
+                  <div className="w-12 h-12 rounded-full bg-foreground/80 text-background flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-90 group-hover:scale-100 shadow-lg">
+                    <Play size={18} className="ml-0.5" />
                   </div>
                 </div>
               </div>
@@ -96,7 +96,7 @@ const AppHome = () => {
       {/* New releases */}
       <section className="mt-12">
         <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium mb-4">ALBUM MỚI</h2>
-        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+        <div className="flex gap-5 overflow-x-auto no-scrollbar pb-2">
           {albums.filter(a => a.year >= 2026).map((album, i) => (
             <motion.div
               key={album.id}
@@ -106,7 +106,7 @@ const AppHome = () => {
               onClick={() => navigate(`/app/album/${album.id}`)}
               className="flex-shrink-0 w-48 group cursor-pointer"
             >
-              <div className="aspect-square overflow-hidden mb-3">
+              <div className="aspect-square overflow-hidden mb-3 rounded-2xl shadow-md">
                 <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <h3 className="text-base font-semibold group-hover:text-primary transition-colors">{album.title}</h3>
@@ -122,7 +122,7 @@ const AppHome = () => {
           <TrendingUp size={14} className="text-muted-foreground" />
           <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium">THỊNH HÀNH</h2>
         </div>
-        <div className="border-t border-border">
+        <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
           {topSongs.map((song, i) => (
             <motion.button
               key={song.id}
@@ -130,16 +130,16 @@ const AppHome = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.05, duration: 0.4 }}
               onClick={() => playSong(song, topSongs)}
-              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
+              className="w-full flex items-center gap-4 py-4 px-5 hover:bg-card/60 transition-colors group text-left border-b border-border/50 last:border-b-0"
             >
-              <span className="text-xs text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
-              <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
+              <span className="text-sm font-display text-muted-foreground w-6">{String(i + 1).padStart(2, "0")}</span>
+              <img src={song.album.image} alt="" className="w-12 h-12 object-cover flex-shrink-0 rounded-lg" />
               <div className="flex-1 min-w-0">
                 <p className="text-base group-hover:text-primary transition-colors truncate">{song.title}</p>
                 <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
               </div>
-              <span className="text-xs text-foreground/50">{formatNumber(song.playCount)}</span>
-              <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/40">{formatNumber(song.playCount)}</span>
+              <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>

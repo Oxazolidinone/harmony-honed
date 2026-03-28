@@ -41,15 +41,15 @@ const AppLibrary = () => {
       </motion.h1>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-border mb-8">
+      <div className="flex gap-2 mb-8">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`flex items-center gap-2 px-4 py-3 text-xs tracking-wider transition-colors border-b-2 ${
+            className={`flex items-center gap-2 px-5 py-2.5 text-xs tracking-wider rounded-full transition-all ${
               tab === t.key
-                ? "border-primary text-foreground"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "bg-foreground text-background shadow-md"
+                : "bg-card/50 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-card/70"
             }`}
           >
             <t.icon size={14} />
@@ -62,9 +62,9 @@ const AppLibrary = () => {
       {tab === "playlists" && (
         <div>
           {/* Create new */}
-          <button className="flex items-center gap-3 w-full p-4 border border-dashed border-border hover:border-primary/50 transition-colors mb-6 group">
-            <div className="w-12 h-12 flex items-center justify-center bg-muted">
-              <Plus size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
+          <button className="flex items-center gap-4 w-full p-5 border border-dashed border-border/60 rounded-2xl hover:border-primary/50 hover:bg-card/30 transition-all mb-6 group">
+            <div className="w-14 h-14 flex items-center justify-center bg-muted/60 rounded-xl">
+              <Plus size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
             <div className="text-left">
               <p className="text-sm font-medium">Tạo playlist mới</p>
@@ -80,9 +80,9 @@ const AppLibrary = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => navigate(`/app/playlist/${pl.id}`)}
-                className="flex items-center gap-4 p-3 hover:bg-card/70 backdrop-blur-sm transition-colors cursor-pointer group"
+                className="flex items-center gap-4 p-3 rounded-xl hover:bg-card/60 backdrop-blur-sm transition-all hover:scale-[1.01] cursor-pointer group"
               >
-                <img src={pl.image} alt={pl.name} className="w-14 h-14 object-cover flex-shrink-0" />
+                <img src={pl.image} alt={pl.name} className="w-16 h-16 object-cover flex-shrink-0 rounded-xl shadow-sm" />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium group-hover:text-primary transition-colors truncate">{pl.name}</p>
                   <p className="text-xs text-foreground/50">{pl.songs.length} bài · {pl.createdBy}</p>
@@ -95,7 +95,7 @@ const AppLibrary = () => {
 
       {/* Liked songs */}
       {tab === "liked" && (
-        <div className="border-t border-border">
+        <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
           {likedSongs.map((song, i) => (
             <motion.button
               key={song.id}
@@ -103,15 +103,15 @@ const AppLibrary = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.03 }}
               onClick={() => playSong(song, likedSongs)}
-              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
+              className="w-full flex items-center gap-4 py-3.5 px-5 border-b border-border/30 last:border-b-0 hover:bg-card/60 transition-colors group text-left"
             >
               <Heart size={12} className="text-primary flex-shrink-0" fill="currentColor" />
-              <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
+              <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
                 <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
               </div>
-              <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>
@@ -119,7 +119,7 @@ const AppLibrary = () => {
 
       {/* History */}
       {tab === "history" && (
-        <div className="border-t border-border">
+        <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
           {recentlyPlayed.map((song, i) => (
             <motion.button
               key={song.id}
@@ -127,15 +127,15 @@ const AppLibrary = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.03 }}
               onClick={() => playSong(song, recentlyPlayed)}
-              className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
+              className="w-full flex items-center gap-4 py-3.5 px-5 border-b border-border/30 last:border-b-0 hover:bg-card/60 transition-colors group text-left"
             >
-              <span className="text-xs text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
-              <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
+              <span className="text-sm font-display text-muted-foreground w-6">{String(i + 1).padStart(2, "0")}</span>
+              <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
                 <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
               </div>
-              <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>

@@ -19,7 +19,7 @@ const ArtistDetail = () => {
   return (
     <div>
       {/* Hero */}
-      <div className="relative h-64 md:h-80 overflow-hidden">
+      <div className="relative h-64 md:h-80 overflow-hidden rounded-b-3xl">
         <img src={artist.image} alt={artist.name} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 px-6 md:px-10 pb-8">
@@ -35,14 +35,14 @@ const ArtistDetail = () => {
       </div>
 
       {/* Bio */}
-      <div className="px-6 md:px-10 py-6 border-b border-border">
+      <div className="px-6 md:px-10 py-6">
         <p className="text-sm text-foreground/70 leading-relaxed max-w-2xl">{artist.bio}</p>
       </div>
 
       {/* Top songs */}
-      <section className="px-6 md:px-10 py-8">
+      <section className="px-6 md:px-10 py-4">
         <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4">BÀI HÁT PHỔ BIẾN</h2>
-        <div className="border-t border-border">
+        <div className="bg-card/30 backdrop-blur-sm rounded-2xl overflow-hidden">
           {topSongs.map((song, i) => {
             const isActive = currentSong?.id === song.id;
             return (
@@ -52,15 +52,15 @@ const ArtistDetail = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => playSong(song, artistSongs)}
-                className={`w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/50 transition-colors group text-left ${isActive ? "text-primary" : ""}`}
+                className={`w-full flex items-center gap-4 py-3.5 px-5 border-b border-border/30 last:border-b-0 hover:bg-card/50 transition-colors group text-left ${isActive ? "text-primary" : ""}`}
               >
-                <span className="text-xs text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
-                <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
+                <span className="text-sm font-display text-muted-foreground w-6">{String(i + 1).padStart(2, "0")}</span>
+                <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
                 <div className="flex-1 min-w-0">
                   <p className={`text-sm truncate ${isActive ? "text-primary" : "group-hover:text-primary"} transition-colors`}>{song.title}</p>
                 </div>
-                <span className="text-[11px] text-muted-foreground">{formatNumber(song.playCount)}</span>
-                <span className="text-[11px] text-muted-foreground">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-muted-foreground">{formatNumber(song.playCount)}</span>
+                <span className="text-xs text-muted-foreground">{formatDuration(song.duration)}</span>
               </motion.button>
             );
           })}
@@ -68,20 +68,20 @@ const ArtistDetail = () => {
       </section>
 
       {/* Albums */}
-      <section className="px-6 md:px-10 pb-8">
+      <section className="px-6 md:px-10 py-4 pb-8">
         <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4">ALBUM</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {artistAlbums.map((album) => (
             <div
               key={album.id}
               onClick={() => navigate(`/app/album/${album.id}`)}
               className="group cursor-pointer"
             >
-              <div className="aspect-square overflow-hidden mb-2">
+              <div className="aspect-square overflow-hidden mb-2 rounded-2xl shadow-md">
                 <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <p className="text-sm font-medium group-hover:text-primary transition-colors">{album.title}</p>
-              <p className="text-[11px] text-muted-foreground">{album.year} · {album.genre}</p>
+              <p className="text-xs text-muted-foreground">{album.year} · {album.genre}</p>
             </div>
           ))}
         </div>
