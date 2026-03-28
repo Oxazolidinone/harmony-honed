@@ -3,6 +3,7 @@ import { Play, Clock, TrendingUp } from "lucide-react";
 import { usePlayer } from "@/contexts/PlayerContext";
 import { albums, playlists, recentlyPlayed, allSongs, formatDuration, formatNumber } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
+import bgHome from "@/assets/bg-home.jpg";
 
 const greetingTime = () => {
   const h = new Date().getHours();
