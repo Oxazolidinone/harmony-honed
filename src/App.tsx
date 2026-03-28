@@ -9,9 +9,6 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AppLayout from "./components/app/AppLayout";
-import AppHome from "./pages/app/Home";
-import AppSearch from "./pages/app/Search";
-import AppLibrary from "./pages/app/Library";
 import PlaylistDetail from "./pages/app/PlaylistDetail";
 import AlbumDetail from "./pages/app/AlbumDetail";
 import ArtistDetail from "./pages/app/ArtistDetail";
@@ -33,9 +30,7 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/app" element={<AppLayout />}>
-                <Route index element={<AppHome />} />
-                <Route path="search" element={<AppSearch />} />
-                <Route path="library" element={<AppLibrary />} />
+                <Route index element={<></>} />
                 <Route path="playlist/:id" element={<PlaylistDetail />} />
                 <Route path="album/:id" element={<AlbumDetail />} />
                 <Route path="artist/:id" element={<ArtistDetail />} />
