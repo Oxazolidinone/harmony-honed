@@ -20,7 +20,7 @@ const AppHome = () => {
 
   return (
     <div
-      className="min-h-full"
+      className="min-h-full relative"
       style={{
         backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.45), hsl(40 20% 95% / 0.5)), url(${bgHome})`,
         backgroundSize: "cover",
@@ -28,6 +28,11 @@ const AppHome = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Vertical accent text */}
+      <div className="absolute right-4 top-24 hidden lg:block">
+        <p className="writing-vertical text-xs tracking-[0.5em] text-foreground/15 font-body">NHACCUATU · 音楽</p>
+      </div>
+
       <div className="px-6 md:px-10 py-8">
       {/* Greeting */}
       <motion.div
@@ -35,15 +40,17 @@ const AppHome = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="font-display text-4xl md:text-5xl font-light mb-2">{greetingTime()}</h1>
+        <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-3">ホーム · HOME</p>
+        <h1 className="font-display text-4xl md:text-5xl font-light mb-2 italic">{greetingTime()}</h1>
         <p className="text-foreground/60 text-base">Tiếp tục hành trình âm nhạc của bạn</p>
       </motion.div>
 
       {/* Recently played */}
       <section className="mt-10">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-primary/40 font-body text-xs">01</span>
           <Clock size={14} className="text-muted-foreground" />
-          <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium">NGHE GẦN ĐÂY</h2>
+          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body font-medium">NGHE GẦN ĐÂY</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {recentlyPlayed.map((song, i) => (
@@ -67,7 +74,10 @@ const AppHome = () => {
 
       {/* Playlists for you */}
       <section className="mt-12">
-        <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium mb-4">DÀNH CHO BẠN</h2>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-primary/40 font-body text-xs">02</span>
+          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body font-medium">DÀNH CHO BẠN</h2>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {playlists.map((pl, i) => (
             <motion.div
@@ -86,7 +96,7 @@ const AppHome = () => {
                   </div>
                 </div>
               </div>
-              <h3 className="text-base font-semibold group-hover:text-primary transition-colors">{pl.name}</h3>
+              <h3 className="font-display text-lg italic group-hover:text-primary transition-colors">{pl.name}</h3>
               <p className="text-xs text-foreground/50 mt-0.5">{pl.description}</p>
             </motion.div>
           ))}
@@ -95,7 +105,10 @@ const AppHome = () => {
 
       {/* New releases */}
       <section className="mt-12">
-        <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium mb-4">ALBUM MỚI</h2>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-primary/40 font-body text-xs">03</span>
+          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body font-medium">ALBUM MỚI</h2>
+        </div>
         <div className="flex gap-5 overflow-x-auto no-scrollbar pb-2">
           {albums.filter(a => a.year >= 2026).map((album, i) => (
             <motion.div
@@ -109,7 +122,7 @@ const AppHome = () => {
               <div className="aspect-square overflow-hidden mb-3 rounded-2xl shadow-md">
                 <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
-              <h3 className="text-base font-semibold group-hover:text-primary transition-colors">{album.title}</h3>
+              <h3 className="font-display text-lg italic group-hover:text-primary transition-colors">{album.title}</h3>
               <p className="text-xs text-foreground/50">{album.artist.name} · {album.year}</p>
             </motion.div>
           ))}
@@ -118,9 +131,10 @@ const AppHome = () => {
 
       {/* Trending */}
       <section className="mt-12 mb-8">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-primary/40 font-body text-xs">04</span>
           <TrendingUp size={14} className="text-muted-foreground" />
-          <h2 className="text-sm tracking-[0.3em] text-foreground/50 font-body font-medium">THỊNH HÀNH</h2>
+          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body font-medium">THỊNH HÀNH</h2>
         </div>
         <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
           {topSongs.map((song, i) => (
@@ -130,13 +144,13 @@ const AppHome = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.05, duration: 0.4 }}
               onClick={() => playSong(song, topSongs)}
-              className="w-full flex items-center gap-4 py-4 px-5 hover:bg-card/60 transition-colors group text-left border-b border-border/50 last:border-b-0"
+              className="w-full flex items-center gap-4 py-4 px-5 hover:bg-card/60 transition-colors group text-left border-b border-border/30 last:border-b-0"
             >
-              <span className="text-sm font-display text-muted-foreground w-6">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-sm font-display text-primary/40 w-6">{String(i + 1).padStart(2, "0")}</span>
               <img src={song.album.image} alt="" className="w-12 h-12 object-cover flex-shrink-0 rounded-lg" />
               <div className="flex-1 min-w-0">
-                <p className="text-base group-hover:text-primary transition-colors truncate">{song.title}</p>
-                <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
+                <p className="text-base font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
+                <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
               </div>
               <span className="text-xs text-foreground/40">{formatNumber(song.playCount)}</span>
               <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>

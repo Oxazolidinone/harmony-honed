@@ -24,9 +24,9 @@ const PlaylistDetail = () => {
           <button onClick={() => navigate(-1)} className="mb-4 text-foreground/60 hover:text-foreground transition-colors">
             <ArrowLeft size={18} />
           </button>
-          <p className="text-[10px] tracking-[0.3em] text-muted-foreground mb-2">PLAYLIST</p>
-          <h1 className="font-display text-3xl md:text-5xl font-light">{playlist.name}</h1>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-2">プレイリスト · PLAYLIST</p>
+          <h1 className="font-display text-3xl md:text-5xl font-light italic">{playlist.name}</h1>
+          <p className="text-sm text-muted-foreground mt-2 font-body">
             {playlist.songs.length} bài · {formatDuration(totalDuration)} · {playlist.createdBy}
           </p>
         </div>
@@ -47,7 +47,7 @@ const PlaylistDetail = () => {
 
       {/* Song list */}
       <div className="px-6 md:px-10 pb-8">
-        <div className="flex items-center gap-4 py-3 px-4 text-[10px] tracking-wider text-muted-foreground">
+        <div className="flex items-center gap-4 py-3 px-4 text-[10px] tracking-wider text-muted-foreground font-body">
           <span className="w-5">#</span>
           <span className="flex-1">TIÊU ĐỀ</span>
           <span className="hidden md:block w-32">ALBUM</span>
@@ -65,14 +65,14 @@ const PlaylistDetail = () => {
                 onClick={() => playSong(song, playlist.songs)}
                 className={`w-full flex items-center gap-4 py-3.5 px-4 border-b border-border/30 last:border-b-0 hover:bg-card/50 transition-colors group text-left ${isActive ? "text-primary" : ""}`}
               >
-                <span className="text-sm font-display text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-sm font-display text-primary/40 w-5">{String(i + 1).padStart(2, "0")}</span>
                 <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
                 <div className="flex-1 min-w-0">
-                  <p className={`text-sm truncate ${isActive ? "text-primary" : "group-hover:text-primary"} transition-colors`}>{song.title}</p>
-                  <p className="text-xs text-muted-foreground truncate">{song.artist.name}</p>
+                  <p className={`text-sm font-display italic truncate ${isActive ? "text-primary" : "group-hover:text-primary"} transition-colors`}>{song.title}</p>
+                  <p className="text-xs text-muted-foreground font-body truncate">{song.artist.name}</p>
                 </div>
-                <span className="hidden md:block text-xs text-muted-foreground w-32 truncate">{song.album.title}</span>
-                <span className="text-xs text-muted-foreground">{formatDuration(song.duration)}</span>
+                <span className="hidden md:block text-xs text-muted-foreground font-body w-32 truncate">{song.album.title}</span>
+                <span className="text-xs text-muted-foreground font-body">{formatDuration(song.duration)}</span>
               </motion.button>
             );
           })}
