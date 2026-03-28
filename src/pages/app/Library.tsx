@@ -22,10 +22,10 @@ const AppLibrary = () => {
   ];
 
   return (
-    <div className="relative min-h-full">
-      <div className="fixed inset-0 pointer-events-none -z-10">
+    <div className="relative min-h-full overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
         <img src={bgLibrary} alt="" className="w-full h-full object-cover opacity-25" />
-        <div className="absolute inset-0 bg-background/60" />
+        <div className="absolute inset-0 bg-background/50" />
       </div>
       <div className="px-6 md:px-10 py-8 relative">
       <motion.h1
