@@ -4,6 +4,7 @@ import { Music, ListMusic, Clock, Heart, Plus } from "lucide-react";
 import { playlists, recentlyPlayed, allSongs, formatDuration } from "@/data/mockData";
 import { usePlayer } from "@/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
+import bgLibrary from "@/assets/bg-library.jpg";
 
 type Tab = "playlists" | "liked" | "history";
 
@@ -21,7 +22,12 @@ const AppLibrary = () => {
   ];
 
   return (
-    <div className="px-6 md:px-10 py-8">
+    <div className="relative min-h-full">
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <img src={bgLibrary} alt="" className="w-full h-full object-cover opacity-25" />
+        <div className="absolute inset-0 bg-background/60" />
+      </div>
+      <div className="px-6 md:px-10 py-8 relative">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -130,6 +136,7 @@ const AppLibrary = () => {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 };
