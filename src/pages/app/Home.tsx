@@ -22,7 +22,7 @@ const AppHome = () => {
     <div
       className="min-h-full"
       style={{
-        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.55), hsl(40 20% 95% / 0.55)), url(${bgHome})`,
+        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.45), hsl(40 20% 95% / 0.5)), url(${bgHome})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
@@ -35,8 +35,8 @@ const AppHome = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="font-display text-3xl md:text-4xl font-light mb-1">{greetingTime()}</h1>
-        <p className="text-muted-foreground text-sm">Tiếp tục hành trình âm nhạc của bạn</p>
+         <h1 className="font-display text-4xl md:text-5xl font-light mb-2">{greetingTime()}</h1>
+        <p className="text-foreground/60 text-base">Tiếp tục hành trình âm nhạc của bạn</p>
       </motion.div>
 
       {/* Recently played */}
