@@ -56,7 +56,7 @@ const SiteHeader = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[60] bg-background"
+            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-md"
           >
             <div className="flex flex-col h-full px-6 md:px-12 py-6">
               <div className="flex items-center justify-between">

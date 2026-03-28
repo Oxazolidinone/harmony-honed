@@ -7,7 +7,7 @@ const ContactSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" ref={ref} className="relative">
+    <section id="contact" ref={ref} className="relative section-fade-top">
       {/* Background */}
       <div className="absolute inset-0">
         <img
@@ -18,7 +18,7 @@ const ContactSection = () => {
           height={800}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/60" />
+        <div className="absolute inset-0 bg-background/40" />
       </div>
 
       {/* Marquee - like QINO's GET IN TOUCH */}

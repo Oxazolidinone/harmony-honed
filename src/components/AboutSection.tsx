@@ -8,7 +8,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={ref} className="relative min-h-screen flex items-center">
+    <section id="about" ref={ref} className="relative min-h-screen flex items-center section-fade-top section-fade-bottom">
       {/* Background image - left side */}
       <div className="absolute inset-0 grid md:grid-cols-2">
         <div className="relative overflow-hidden">
@@ -23,7 +23,7 @@ const AboutSection = () => {
             animate={isInView ? { scale: 1 } : {}}
             transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
           />
-          <div className="absolute inset-0 bg-background/30" />
+          <div className="absolute inset-0 bg-background/10" />
         </div>
         <div className="bg-background" />
       </div>
