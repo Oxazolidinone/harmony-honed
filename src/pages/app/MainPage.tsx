@@ -164,7 +164,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
 
       {/* ═══════════ DISCOVER ═══════════ */}
       <Section id="discover" bgImage={bgDiscover} onVisible={onActiveSection}>
-        <div className="section-fade-top" />
+        
         <div className="flex items-center gap-3 mb-6">
           <span className="text-primary/60 text-xs font-body">03</span>
           <Disc3 size={14} className="text-foreground/70" />
