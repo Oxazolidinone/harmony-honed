@@ -5,7 +5,10 @@ import { usePlayer } from "@/contexts/PlayerContext";
 import { albums, playlists, recentlyPlayed, allSongs, artists, genres, formatDuration, formatNumber } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
 import bgHome from "@/assets/bg-home.jpg";
+import bgDiscover from "@/assets/bg-discover.jpg";
+import bgArtists from "@/assets/bg-artists.jpg";
 import bgSearch from "@/assets/bg-search.jpg";
+import bgCharts from "@/assets/bg-charts.jpg";
 import bgLibrary from "@/assets/bg-library.jpg";
 
 // ─── Greeting ────────────────────────────────────────
@@ -43,7 +46,7 @@ const Section = ({
       style={
         bgImage
           ? {
-              backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.45), hsl(40 20% 95% / 0.55)), url(${bgImage})`,
+              backgroundImage: `linear-gradient(hsl(40 20% 96% / 0.72), hsl(40 20% 96% / 0.78)), url(${bgImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundAttachment: "fixed",
@@ -160,7 +163,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ DISCOVER ═══════════ */}
-      <Section id="discover" onVisible={onActiveSection}>
+      <Section id="discover" bgImage={bgDiscover} onVisible={onActiveSection}>
         <div className="section-fade-top" />
         <div className="flex items-center gap-3 mb-6">
           <span className="text-primary/40 text-xs font-body">03</span>
@@ -210,7 +213,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ ARTISTS ═══════════ */}
-      <Section id="artists" onVisible={onActiveSection}>
+      <Section id="artists" bgImage={bgArtists} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-8">
           <span className="text-primary/40 text-xs font-body">04</span>
           <Music size={14} className="text-muted-foreground" />
@@ -338,7 +341,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ CHARTS ═══════════ */}
-      <Section id="charts" onVisible={onActiveSection}>
+      <Section id="charts" bgImage={bgCharts} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-8">
           <span className="text-primary/40 text-xs font-body">06</span>
           <TrendingUp size={14} className="text-muted-foreground" />
