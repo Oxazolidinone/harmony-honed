@@ -141,6 +141,7 @@ const AppHome = () => {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 };
