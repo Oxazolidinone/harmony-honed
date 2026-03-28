@@ -78,9 +78,9 @@ const AppSearch = () => {
       </div>
 
       {!hasResults && !query && activeGenre === "Tất cả" && (
-        <div className="text-center py-20">
-          <p className="font-display text-2xl text-foreground/60 mb-2">Khám phá âm nhạc</p>
-          <p className="text-sm text-muted-foreground">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
+        <div className="text-center py-24">
+          <p className="font-display text-4xl text-foreground/50 mb-3">Khám phá âm nhạc</p>
+          <p className="text-base text-foreground/40">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
         </div>
       )}
 
