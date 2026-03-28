@@ -22,59 +22,59 @@ const MusicPlayer = () => {
         exit={{ y: 100 }}
         className="fixed bottom-0 left-0 right-0 z-50"
       >
-        <div className="mx-2 mb-2 bg-card/90 backdrop-blur-xl rounded-2xl border border-border/40 shadow-xl">
+        <div className="mx-3 mb-3 bg-card/95 backdrop-blur-2xl rounded-2xl border border-border/30 shadow-2xl">
           {/* Progress bar */}
-          <div className="absolute top-0 left-4 right-4 h-[2px] bg-border/30 rounded-full overflow-hidden">
+          <div className="absolute top-0 left-5 right-5 h-[1.5px] bg-border/20 rounded-full overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-300 rounded-full"
               style={{ width: `${progress}%` }}
             />
           </div>
 
-          <div className="flex items-center justify-between px-5 md:px-6 h-20">
+          <div className="flex items-center justify-between px-5 md:px-6 h-[72px]">
             {/* Song info */}
-            <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="flex items-center gap-3.5 flex-1 min-w-0">
               <img
                 src={currentSong.album.image}
                 alt={currentSong.title}
-                className="w-12 h-12 object-cover flex-shrink-0 rounded-lg shadow-sm"
+                className="w-11 h-11 object-cover flex-shrink-0 rounded-lg shadow-sm"
               />
               <div className="min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">{currentSong.title}</p>
-                <p className="text-xs text-muted-foreground truncate">{currentSong.artist.name}</p>
+                <p className="text-sm font-display italic text-foreground truncate">{currentSong.title}</p>
+                <p className="text-[11px] text-muted-foreground font-body truncate">{currentSong.artist.name}</p>
               </div>
             </div>
 
             {/* Controls */}
             <div className="flex flex-col items-center gap-1 flex-1">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
                 <button
                   onClick={toggleShuffle}
-                  className={`hidden md:block transition-colors ${shuffle ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`hidden md:block transition-colors ${shuffle ? "text-primary" : "text-muted-foreground/50 hover:text-foreground"}`}
                 >
-                  <Shuffle size={14} />
+                  <Shuffle size={13} />
                 </button>
-                <button onClick={prevSong} className="text-foreground/70 hover:text-foreground transition-colors">
-                  <SkipBack size={18} />
+                <button onClick={prevSong} className="text-foreground/60 hover:text-foreground transition-colors">
+                  <SkipBack size={16} />
                 </button>
                 <button
                   onClick={togglePlay}
-                  className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-105 transition-transform shadow-md"
+                  className="w-9 h-9 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-105 transition-transform shadow-md"
                 >
-                  {isPlaying ? <Pause size={16} /> : <Play size={16} className="ml-0.5" />}
+                  {isPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
                 </button>
-                <button onClick={nextSong} className="text-foreground/70 hover:text-foreground transition-colors">
-                  <SkipForward size={18} />
+                <button onClick={nextSong} className="text-foreground/60 hover:text-foreground transition-colors">
+                  <SkipForward size={16} />
                 </button>
                 <button
                   onClick={toggleRepeat}
-                  className={`hidden md:block transition-colors ${repeat !== "off" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`hidden md:block transition-colors ${repeat !== "off" ? "text-primary" : "text-muted-foreground/50 hover:text-foreground"}`}
                 >
-                  {repeat === "one" ? <Repeat1 size={14} /> : <Repeat size={14} />}
+                  {repeat === "one" ? <Repeat1 size={13} /> : <Repeat size={13} />}
                 </button>
               </div>
               <div className="hidden md:flex items-center gap-2 w-full max-w-md">
-                <span className="text-[10px] text-muted-foreground w-8 text-right">{formatDuration(currentTime)}</span>
+                <span className="text-[9px] text-muted-foreground/60 w-8 text-right font-body">{formatDuration(currentTime)}</span>
                 <Slider
                   value={[currentTime]}
                   max={currentSong.duration}
@@ -82,7 +82,7 @@ const MusicPlayer = () => {
                   onValueChange={([v]) => setCurrentTime(v)}
                   className="flex-1"
                 />
-                <span className="text-[10px] text-muted-foreground w-8">{formatDuration(currentSong.duration)}</span>
+                <span className="text-[9px] text-muted-foreground/60 w-8 font-body">{formatDuration(currentSong.duration)}</span>
               </div>
             </div>
 
@@ -90,16 +90,16 @@ const MusicPlayer = () => {
             <div className="hidden md:flex items-center gap-2 flex-1 justify-end">
               <button
                 onClick={() => setVolume(volume === 0 ? 80 : 0)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground/50 hover:text-foreground transition-colors"
               >
-                {volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                {volume === 0 ? <VolumeX size={14} /> : <Volume2 size={14} />}
               </button>
               <Slider
                 value={[volume]}
                 max={100}
                 step={1}
                 onValueChange={([v]) => setVolume(v)}
-                className="w-24"
+                className="w-20"
               />
             </div>
           </div>
