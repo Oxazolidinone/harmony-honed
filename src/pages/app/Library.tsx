@@ -25,7 +25,7 @@ const AppLibrary = () => {
     <div
       className="min-h-full relative"
       style={{
-        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.4), hsl(40 20% 95% / 0.5)), url(${bgLibrary})`,
+        backgroundImage: `linear-gradient(hsl(40 20% 96% / 0.72), hsl(40 20% 96% / 0.78)), url(${bgLibrary})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
