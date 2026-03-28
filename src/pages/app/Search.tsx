@@ -41,7 +41,7 @@ const AppSearch = () => {
     <div
       className="min-h-full"
       style={{
-        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.6), hsl(40 20% 95% / 0.6)), url(${bgSearch})`,
+        backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.4), hsl(40 20% 95% / 0.5)), url(${bgSearch})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
@@ -56,7 +56,7 @@ const AppSearch = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Tìm bài hát, nghệ sĩ, album..."
-          className="w-full bg-card/60 border border-border pl-12 pr-4 py-4 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+          className="w-full bg-card/70 backdrop-blur-sm border border-border pl-12 pr-4 py-4 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
         />
       </motion.div>
 
@@ -78,9 +78,9 @@ const AppSearch = () => {
       </div>
 
       {!hasResults && !query && activeGenre === "Tất cả" && (
-        <div className="text-center py-20">
-          <p className="font-display text-2xl text-foreground/60 mb-2">Khám phá âm nhạc</p>
-          <p className="text-sm text-muted-foreground">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
+        <div className="text-center py-24">
+          <p className="font-display text-4xl text-foreground/50 mb-3">Khám phá âm nhạc</p>
+          <p className="text-base text-foreground/40">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
         </div>
       )}
 
@@ -134,7 +134,7 @@ const AppSearch = () => {
               <button
                 key={song.id}
                 onClick={() => playSong(song, results.songs)}
-                className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/50 transition-colors group text-left"
+                className="w-full flex items-center gap-4 py-3 px-2 border-b border-border hover:bg-card/60 hover:backdrop-blur-sm transition-colors group text-left"
               >
                 <div className="w-10 h-10 relative flex-shrink-0">
                   <img src={song.album.image} alt="" className="w-full h-full object-cover" />
@@ -144,9 +144,9 @@ const AppSearch = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-[11px] text-muted-foreground truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-[11px] text-muted-foreground">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>
