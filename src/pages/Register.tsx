@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "@/contexts/ThemeContext";
+import { getThemeBackgrounds } from "@/lib/themeBackgrounds";
 import { motion } from "framer-motion";
-import bgAuthDock from "@/assets/bg-auth-dock.jpg";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { register, login } = useAuth();
+  const { theme } = useTheme();
+  const backgrounds = getThemeBackgrounds(theme);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,18 +36,31 @@ const Register = () => {
     }
   };
 
+  const isDark = theme === "dark-fantasy";
+
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Full background image */}
-      <img src={bgAuthDock} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={backgrounds.auth} alt="" className="absolute inset-0 w-full h-full object-cover" />
       
-      {/* Gradient overlay — form side darker */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[hsl(25,15%,8%)/0.82] via-[hsl(25,15%,8%)/0.55] to-[hsl(25,15%,8%)/0.25] lg:from-[hsl(25,15%,8%)/0.3] lg:via-[hsl(25,15%,8%)/0.45] lg:to-[hsl(25,15%,8%)/0.88]" />
-      
-      {/* Warm color tint */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(28,50%,15%)/0.3] to-transparent" />
+      {theme === "default" && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(25,15%,8%)/0.82] via-[hsl(25,15%,8%)/0.55] to-[hsl(25,15%,8%)/0.25] lg:from-[hsl(25,15%,8%)/0.3] lg:via-[hsl(25,15%,8%)/0.45] lg:to-[hsl(25,15%,8%)/0.88]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(28,50%,15%)/0.3] to-transparent" />
+        </>
+      )}
+      {theme === "japanese" && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(220,30%,10%)/0.75] via-[hsl(220,30%,10%)/0.45] to-[hsl(220,30%,10%)/0.15] lg:from-[hsl(220,30%,10%)/0.2] lg:via-[hsl(220,30%,10%)/0.4] lg:to-[hsl(220,30%,10%)/0.82]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0,60%,20%)/0.15] to-transparent" />
+        </>
+      )}
+      {theme === "dark-fantasy" && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(230,20%,5%)/0.78] via-[hsl(230,20%,5%)/0.50] to-[hsl(230,20%,5%)/0.20] lg:from-[hsl(230,20%,5%)/0.15] lg:via-[hsl(230,20%,5%)/0.45] lg:to-[hsl(230,20%,5%)/0.85]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(42,70%,20%)/0.15] to-transparent" />
+        </>
+      )}
 
-      {/* Form container */}
       <div className="relative z-10 min-h-screen flex items-center justify-center lg:justify-end px-6 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -56,10 +72,13 @@ const Register = () => {
             NHACCUATU
           </a>
 
-          <h1 className="font-display text-4xl mb-2 text-white drop-shadow-lg">Tạo tài khoản</h1>
-          <p className="text-white/60 text-sm mb-8 font-body">Bắt đầu hành trình âm nhạc</p>
+          <h1 className="font-display text-4xl mb-2 text-white drop-shadow-lg">
+            {theme === "japanese" ? "新規登録" : theme === "dark-fantasy" ? "Forge Your Soul" : "Tạo tài khoản"}
+          </h1>
+          <p className="text-white/60 text-sm mb-8 font-body">
+            {theme === "japanese" ? "音楽の旅を始めましょう" : theme === "dark-fantasy" ? "Begin your journey, chosen undead" : "Bắt đầu hành trình âm nhạc"}
+          </p>
 
-          {/* Google OAuth */}
           <button
             type="button"
             onClick={handleGoogleRegister}
@@ -72,67 +91,60 @@ const Register = () => {
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
-            Đăng ký với Google
+            {theme === "japanese" ? "Googleで登録" : theme === "dark-fantasy" ? "Sign up with Google" : "Đăng ký với Google"}
           </button>
 
           <div className="flex items-center gap-4 mb-6">
             <div className="flex-1 h-px bg-white/20" />
-            <span className="text-xs text-white/40 font-body tracking-wider">HOẶC</span>
+            <span className="text-xs text-white/40 font-body tracking-wider">
+              {theme === "japanese" ? "または" : theme === "dark-fantasy" ? "OR" : "HOẶC"}
+            </span>
             <div className="flex-1 h-px bg-white/20" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-xs tracking-wider text-white/50 block mb-2 font-body">HỌ TÊN</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+              <label className="text-xs tracking-wider text-white/50 block mb-2 font-body">
+                {theme === "japanese" ? "お名前" : theme === "dark-fantasy" ? "NAME" : "HỌ TÊN"}
+              </label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)}
                 className="w-full bg-white/8 backdrop-blur-lg border border-white/15 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-white/40 focus:bg-white/12 focus:outline-none transition-all rounded-xl font-body"
-                placeholder="Nguyễn Văn A"
-                required
-              />
+                placeholder={theme === "japanese" ? "山田太郎" : "Your name"} required />
             </div>
             <div>
               <label className="text-xs tracking-wider text-white/50 block mb-2 font-body">EMAIL</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-white/8 backdrop-blur-lg border border-white/15 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-white/40 focus:bg-white/12 focus:outline-none transition-all rounded-xl font-body"
-                placeholder="you@example.com"
-                required
-              />
+                placeholder="you@example.com" required />
             </div>
             <div>
-              <label className="text-xs tracking-wider text-white/50 block mb-2 font-body">MẬT KHẨU</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+              <label className="text-xs tracking-wider text-white/50 block mb-2 font-body">
+                {theme === "japanese" ? "パスワード" : theme === "dark-fantasy" ? "PASSWORD" : "MẬT KHẨU"}
+              </label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-white/8 backdrop-blur-lg border border-white/15 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-white/40 focus:bg-white/12 focus:outline-none transition-all rounded-xl font-body"
-                placeholder="••••••••"
-                required
-              />
+                placeholder="••••••••" required />
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-white/90 text-[hsl(25,15%,10%)] py-3.5 text-sm tracking-wider font-medium hover:bg-white transition-colors disabled:opacity-50 rounded-xl font-body shadow-lg"
+            <button type="submit" disabled={loading}
+              className={`w-full py-3.5 text-sm tracking-wider font-medium transition-colors disabled:opacity-50 rounded-xl font-body shadow-lg ${
+                isDark
+                  ? "bg-[hsl(42,70%,50%)] text-[hsl(230,20%,8%)] hover:bg-[hsl(42,70%,55%)]"
+                  : "bg-white/90 text-[hsl(25,15%,10%)] hover:bg-white"
+              }`}
             >
-              {loading ? "ĐANG XỬ LÝ..." : "ĐĂNG KÝ"}
+              {loading ? "..." : theme === "japanese" ? "登録する" : theme === "dark-fantasy" ? "FORGE" : "ĐĂNG KÝ"}
             </button>
           </form>
 
           <p className="text-center text-sm text-white/50 mt-6 font-body">
-            Đã có tài khoản?{" "}
+            {theme === "japanese" ? "すでにアカウントをお持ちですか？" : theme === "dark-fantasy" ? "Already bound?" : "Đã có tài khoản?"}{" "}
             <Link to="/login" className="text-white/90 hover:text-white transition-colors border-b border-white/30">
-              Đăng nhập
+              {theme === "japanese" ? "ログイン" : theme === "dark-fantasy" ? "Enter" : "Đăng nhập"}
             </Link>
           </p>
 
           <p className="text-center text-[10px] tracking-[0.4em] text-white/15 mt-10 font-body">
-            DISCOVER · CREATE · ENJOY
+            {theme === "japanese" ? "発見 · 創造 · 楽しむ" : theme === "dark-fantasy" ? "DISCOVER · FORGE · ASCEND" : "DISCOVER · CREATE · ENJOY"}
           </p>
         </motion.div>
       </div>

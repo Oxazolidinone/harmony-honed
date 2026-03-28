@@ -2,14 +2,10 @@ import { useRef, useEffect, useState, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play, Clock, TrendingUp, Search as SearchIcon, ListMusic, Heart, Plus, Music, Disc3 } from "lucide-react";
 import { usePlayer } from "@/contexts/PlayerContext";
+import { useTheme } from "@/contexts/ThemeContext";
+import { getThemeBackgrounds } from "@/lib/themeBackgrounds";
 import { albums, playlists, recentlyPlayed, allSongs, artists, genres, formatDuration, formatNumber } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
-import bgHome from "@/assets/bg-home.jpg";
-import bgDiscover from "@/assets/bg-discover.jpg";
-import bgArtists from "@/assets/bg-artists.jpg";
-import bgSearch from "@/assets/bg-search.jpg";
-import bgCharts from "@/assets/bg-charts.jpg";
-import bgLibrary from "@/assets/bg-library.jpg";
 
 // ─── Greeting ────────────────────────────────────────
 const greetingTime = () => {
@@ -66,6 +62,8 @@ interface AppMainPageProps {
 
 const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
   const { playSong, currentSong } = usePlayer();
+  const { theme } = useTheme();
+  const backgrounds = getThemeBackgrounds(theme);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeGenre, setActiveGenre] = useState("Tất cả");
@@ -97,7 +95,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
   return (
     <div className="scroll-smooth">
       {/* ═══════════ HOME ═══════════ */}
-      <Section id="home" bgImage={bgHome} onVisible={onActiveSection}>
+      <Section id="home" bgImage={backgrounds.sections.home} onVisible={onActiveSection}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 className="font-display text-4xl md:text-6xl font-light italic mb-2">{greetingTime()}</h1>
           <p className="text-foreground/80 text-base font-body">Tiếp tục hành trình âm nhạc của bạn</p>
@@ -163,7 +161,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ DISCOVER ═══════════ */}
-      <Section id="discover" bgImage={bgDiscover} onVisible={onActiveSection}>
+      <Section id="discover" bgImage={backgrounds.sections.discover} onVisible={onActiveSection}>
         
         <div className="flex items-center gap-3 mb-6">
           <span className="text-primary/60 text-xs font-body">03</span>
@@ -213,7 +211,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ ARTISTS ═══════════ */}
-      <Section id="artists" bgImage={bgArtists} onVisible={onActiveSection}>
+      <Section id="artists" bgImage={backgrounds.sections.artists} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-8">
           <span className="text-primary/60 text-xs font-body">04</span>
           <Music size={14} className="text-foreground/70" />
@@ -243,7 +241,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ SEARCH ═══════════ */}
-      <Section id="search" bgImage={bgSearch} onVisible={onActiveSection}>
+      <Section id="search" bgImage={backgrounds.sections.search} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-6">
           <span className="text-primary/60 text-xs font-body">05</span>
           <SearchIcon size={14} className="text-foreground/70" />
@@ -341,7 +339,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ CHARTS ═══════════ */}
-      <Section id="charts" bgImage={bgCharts} onVisible={onActiveSection}>
+      <Section id="charts" bgImage={backgrounds.sections.charts} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-8">
           <span className="text-primary/60 text-xs font-body">06</span>
           <TrendingUp size={14} className="text-foreground/70" />
@@ -393,7 +391,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       </Section>
 
       {/* ═══════════ LIBRARY ═══════════ */}
-      <Section id="library" bgImage={bgLibrary} onVisible={onActiveSection}>
+      <Section id="library" bgImage={backgrounds.sections.library} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-2">
           <span className="text-primary/60 text-xs font-body">07</span>
           <ListMusic size={14} className="text-foreground/70" />
