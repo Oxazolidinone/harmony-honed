@@ -2,14 +2,10 @@ import { useRef, useEffect, useState, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play, Clock, TrendingUp, Search as SearchIcon, ListMusic, Heart, Plus, Music, Disc3 } from "lucide-react";
 import { usePlayer } from "@/contexts/PlayerContext";
+import { useTheme } from "@/contexts/ThemeContext";
+import { getThemeBackgrounds } from "@/lib/themeBackgrounds";
 import { albums, playlists, recentlyPlayed, allSongs, artists, genres, formatDuration, formatNumber } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
-import bgHome from "@/assets/bg-home.jpg";
-import bgDiscover from "@/assets/bg-discover.jpg";
-import bgArtists from "@/assets/bg-artists.jpg";
-import bgSearch from "@/assets/bg-search.jpg";
-import bgCharts from "@/assets/bg-charts.jpg";
-import bgLibrary from "@/assets/bg-library.jpg";
 
 // ─── Greeting ────────────────────────────────────────
 const greetingTime = () => {
@@ -66,6 +62,8 @@ interface AppMainPageProps {
 
 const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
   const { playSong, currentSong } = usePlayer();
+  const { theme } = useTheme();
+  const backgrounds = getThemeBackgrounds(theme);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeGenre, setActiveGenre] = useState("Tất cả");
