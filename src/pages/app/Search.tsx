@@ -41,7 +41,7 @@ const AppSearch = () => {
     <div
       className="min-h-full relative"
       style={{
-        backgroundImage: `linear-gradient(hsl(40 20% 96% / 0.72), hsl(40 20% 96% / 0.78)), url(${bgSearch})`,
+        backgroundImage: `linear-gradient(hsl(40 20% 96% / 0.58), hsl(40 20% 96% / 0.65)), url(${bgSearch})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
