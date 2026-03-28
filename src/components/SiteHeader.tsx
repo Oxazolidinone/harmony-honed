@@ -33,12 +33,18 @@ const SiteHeader = () => {
           SONO
         </a>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <a
-            href="#"
-            className="hidden md:flex items-center gap-2 text-sm tracking-wider text-foreground hover:text-primary transition-colors"
+            href="/login"
+            className="hidden md:flex items-center text-sm tracking-wider text-foreground/70 hover:text-foreground transition-colors"
           >
-            Listen Now
+            Đăng nhập
+          </a>
+          <a
+            href="/register"
+            className="hidden md:flex items-center px-5 py-2 text-sm tracking-wider bg-foreground text-background hover:bg-foreground/90 transition-colors"
+          >
+            Bắt đầu nghe
           </a>
           <button
             onClick={() => setMenuOpen(true)}

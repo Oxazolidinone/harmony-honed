@@ -55,6 +55,20 @@ const HeroSection = () => {
               <br />
               <span className="italic text-gradient-gold">Becomes Art.</span>
             </h1>
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <a
+                href="/register"
+                className="px-8 py-3 bg-foreground text-background text-sm tracking-wider hover:bg-foreground/90 transition-colors"
+              >
+                Đăng ký miễn phí
+              </a>
+              <a
+                href="/login"
+                className="px-8 py-3 border border-foreground/30 text-sm tracking-wider text-foreground hover:border-foreground transition-colors"
+              >
+                Đăng nhập
+              </a>
+            </div>
           </motion.div>
         </div>
 
