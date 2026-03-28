@@ -10,7 +10,7 @@ const AlbumDetail = () => {
   const { playSong, currentSong } = usePlayer();
 
   const album = albums.find((a) => a.id === id);
-  if (!album) return <div className="p-10 text-muted-foreground">Không tìm thấy album</div>;
+  if (!album) return <div className="p-10 text-muted-foreground font-body">Không tìm thấy album</div>;
 
   const totalDuration = album.songs.reduce((sum, s) => sum + s.duration, 0);
 
@@ -29,22 +29,22 @@ const AlbumDetail = () => {
           <img src={album.image} alt={album.title} className="w-full h-full object-cover" />
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <p className="text-[10px] tracking-[0.3em] text-muted-foreground mb-2">ALBUM · {album.year}</p>
-          <h1 className="font-display text-3xl md:text-5xl font-light mb-2">{album.title}</h1>
+          <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-2">アルバム · ALBUM · {album.year}</p>
+          <h1 className="font-display text-3xl md:text-5xl font-light italic mb-2">{album.title}</h1>
           <p
             onClick={() => navigate(`/app/artist/${album.artist.id}`)}
-            className="text-sm text-foreground hover:text-primary transition-colors cursor-pointer"
+            className="text-sm text-foreground hover:text-primary transition-colors cursor-pointer font-body"
           >
             {album.artist.name}
           </p>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-xs text-muted-foreground mt-1 font-body">
             {album.songs.length} bài · {formatDuration(totalDuration)} · {album.genre}
           </p>
         </motion.div>
       </div>
 
       {/* Play button */}
-      <div className="px-6 md:px-10 py-4 flex items-center gap-4 border-b border-border/50">
+      <div className="px-6 md:px-10 py-4 flex items-center gap-4">
         <button
           onClick={() => playSong(album.songs[0], album.songs)}
           className="w-11 h-11 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-105 transition-transform shadow-md"
@@ -55,7 +55,7 @@ const AlbumDetail = () => {
 
       {/* Tracks */}
       <div className="px-6 md:px-10 pb-8">
-        <div className="flex items-center gap-4 py-3 px-4 text-[10px] tracking-wider text-muted-foreground">
+        <div className="flex items-center gap-4 py-3 px-4 text-[10px] tracking-wider text-muted-foreground font-body">
           <span className="w-5">#</span>
           <span className="flex-1">TIÊU ĐỀ</span>
           <Clock size={12} />
@@ -72,11 +72,11 @@ const AlbumDetail = () => {
                 onClick={() => playSong(song, album.songs)}
                 className={`w-full flex items-center gap-4 py-4 px-4 hover:bg-card/50 transition-colors group text-left border-b border-border/30 last:border-b-0 ${isActive ? "text-primary" : ""}`}
               >
-                <span className="text-sm font-display text-muted-foreground w-5">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-sm font-display text-primary/40 w-5">{String(i + 1).padStart(2, "0")}</span>
                 <div className="flex-1 min-w-0">
-                  <p className={`text-sm truncate ${isActive ? "text-primary" : "group-hover:text-primary"} transition-colors`}>{song.title}</p>
+                  <p className={`text-sm font-display italic truncate ${isActive ? "text-primary" : "group-hover:text-primary"} transition-colors`}>{song.title}</p>
                 </div>
-                <span className="text-xs text-muted-foreground">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-muted-foreground font-body">{formatDuration(song.duration)}</span>
               </motion.button>
             );
           })}

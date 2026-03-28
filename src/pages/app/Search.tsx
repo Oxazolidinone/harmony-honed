@@ -39,7 +39,7 @@ const AppSearch = () => {
 
   return (
     <div
-      className="min-h-full"
+      className="min-h-full relative"
       style={{
         backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.4), hsl(40 20% 95% / 0.5)), url(${bgSearch})`,
         backgroundSize: "cover",
@@ -47,7 +47,14 @@ const AppSearch = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Vertical accent */}
+      <div className="absolute right-4 top-24 hidden lg:block">
+        <p className="writing-vertical text-xs tracking-[0.5em] text-foreground/15 font-body">探索 · EXPLORE</p>
+      </div>
+
       <div className="px-6 md:px-10 py-8">
+      <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-6">検索 · SEARCH</p>
+
       {/* Search bar */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative mb-8">
         <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -56,7 +63,7 @@ const AppSearch = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Tìm bài hát, nghệ sĩ, album..."
-          className="w-full bg-card/60 backdrop-blur-md border border-border/50 rounded-2xl pl-14 pr-5 py-4 text-base text-foreground focus:border-primary focus:outline-none focus:bg-card/80 transition-all shadow-sm"
+          className="w-full bg-card/60 backdrop-blur-md border border-border/50 rounded-2xl pl-14 pr-5 py-4 text-base text-foreground font-body focus:border-primary focus:outline-none focus:bg-card/80 transition-all shadow-sm"
         />
       </motion.div>
 
@@ -79,15 +86,18 @@ const AppSearch = () => {
 
       {!hasResults && !query && activeGenre === "Tất cả" && (
         <div className="text-center py-24">
-          <p className="font-display text-4xl text-foreground/50 mb-3">Khám phá âm nhạc</p>
-          <p className="text-base text-foreground/40">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
+          <p className="font-display text-5xl text-foreground/30 italic mb-3">Khám phá</p>
+          <p className="text-base text-foreground/40 font-body">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
         </div>
       )}
 
       {/* Artists */}
       {results.artists.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4">NGHỆ SĨ</h2>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-primary/40 font-body text-xs">01</span>
+            <h2 className="text-xs tracking-[0.3em] text-muted-foreground font-body">NGHỆ SĨ</h2>
+          </div>
           <div className="flex gap-5 overflow-x-auto no-scrollbar">
             {results.artists.map((artist) => (
               <div
@@ -96,7 +106,7 @@ const AppSearch = () => {
                 className="flex-shrink-0 w-36 text-center group cursor-pointer"
               >
                 <img src={artist.image} alt={artist.name} className="w-28 h-28 rounded-full object-cover mx-auto mb-3 group-hover:scale-105 transition-transform shadow-md ring-2 ring-card/50" />
-                <p className="text-sm font-medium group-hover:text-primary transition-colors">{artist.name}</p>
+                <p className="text-sm font-display italic group-hover:text-primary transition-colors">{artist.name}</p>
               </div>
             ))}
           </div>
@@ -106,7 +116,10 @@ const AppSearch = () => {
       {/* Albums */}
       {results.albums.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4">ALBUM</h2>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-primary/40 font-body text-xs">02</span>
+            <h2 className="text-xs tracking-[0.3em] text-muted-foreground font-body">ALBUM</h2>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {results.albums.map((album) => (
               <div
@@ -117,8 +130,8 @@ const AppSearch = () => {
                 <div className="relative aspect-square overflow-hidden mb-2 rounded-xl shadow-sm">
                   <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
-                <p className="text-sm font-medium group-hover:text-primary transition-colors truncate">{album.title}</p>
-                <p className="text-xs text-muted-foreground truncate">{album.artist.name}</p>
+                <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{album.title}</p>
+                <p className="text-xs text-muted-foreground font-body truncate">{album.artist.name}</p>
               </div>
             ))}
           </div>
@@ -128,7 +141,10 @@ const AppSearch = () => {
       {/* Songs */}
       {results.songs.length > 0 && (
         <section>
-          <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-4">BÀI HÁT</h2>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-primary/40 font-body text-xs">03</span>
+            <h2 className="text-xs tracking-[0.3em] text-muted-foreground font-body">BÀI HÁT</h2>
+          </div>
           <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
             {results.songs.map((song) => (
               <button
@@ -143,10 +159,10 @@ const AppSearch = () => {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
+                  <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
+                  <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>

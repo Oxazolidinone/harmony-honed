@@ -13,7 +13,7 @@ const AppLibrary = () => {
   const { playSong } = usePlayer();
   const navigate = useNavigate();
 
-  const likedSongs = allSongs.slice(0, 12); // mock liked
+  const likedSongs = allSongs.slice(0, 12);
 
   const tabs: { key: Tab; label: string; icon: React.ElementType }[] = [
     { key: "playlists", label: "Playlists", icon: ListMusic },
@@ -23,7 +23,7 @@ const AppLibrary = () => {
 
   return (
     <div
-      className="min-h-full"
+      className="min-h-full relative"
       style={{
         backgroundImage: `linear-gradient(hsl(40 20% 95% / 0.4), hsl(40 20% 95% / 0.5)), url(${bgLibrary})`,
         backgroundSize: "cover",
@@ -31,11 +31,17 @@ const AppLibrary = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Vertical accent */}
+      <div className="absolute right-4 top-24 hidden lg:block">
+        <p className="writing-vertical text-xs tracking-[0.5em] text-foreground/15 font-body">図書館 · LIBRARY</p>
+      </div>
+
       <div className="px-6 md:px-10 py-8">
+      <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-3">コレクション · COLLECTION</p>
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-display text-4xl md:text-5xl font-light mb-8"
+        className="font-display text-4xl md:text-5xl font-light italic mb-8"
       >
         Thư viện
       </motion.h1>
@@ -61,14 +67,13 @@ const AppLibrary = () => {
       {/* Playlists */}
       {tab === "playlists" && (
         <div>
-          {/* Create new */}
           <button className="flex items-center gap-4 w-full p-5 border border-dashed border-border/60 rounded-2xl hover:border-primary/50 hover:bg-card/30 transition-all mb-6 group">
             <div className="w-14 h-14 flex items-center justify-center bg-muted/60 rounded-xl">
               <Plus size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
             <div className="text-left">
-              <p className="text-sm font-medium">Tạo playlist mới</p>
-              <p className="text-xs text-foreground/50">Bắt đầu bộ sưu tập của bạn</p>
+              <p className="text-sm font-display italic">Tạo playlist mới</p>
+              <p className="text-xs text-foreground/50 font-body">Bắt đầu bộ sưu tập của bạn</p>
             </div>
           </button>
 
@@ -84,8 +89,8 @@ const AppLibrary = () => {
               >
                 <img src={pl.image} alt={pl.name} className="w-16 h-16 object-cover flex-shrink-0 rounded-xl shadow-sm" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium group-hover:text-primary transition-colors truncate">{pl.name}</p>
-                  <p className="text-xs text-foreground/50">{pl.songs.length} bài · {pl.createdBy}</p>
+                  <p className="font-display text-base italic group-hover:text-primary transition-colors truncate">{pl.name}</p>
+                  <p className="text-xs text-foreground/50 font-body">{pl.songs.length} bài · {pl.createdBy}</p>
                 </div>
               </motion.div>
             ))}
@@ -108,10 +113,10 @@ const AppLibrary = () => {
               <Heart size={12} className="text-primary flex-shrink-0" fill="currentColor" />
               <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
               <div className="flex-1 min-w-0">
-                <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
+                <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
+                <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
               </div>
-              <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>
@@ -129,13 +134,13 @@ const AppLibrary = () => {
               onClick={() => playSong(song, recentlyPlayed)}
               className="w-full flex items-center gap-4 py-3.5 px-5 border-b border-border/30 last:border-b-0 hover:bg-card/60 transition-colors group text-left"
             >
-              <span className="text-sm font-display text-muted-foreground w-6">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-sm font-display text-primary/40 w-6">{String(i + 1).padStart(2, "0")}</span>
               <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
               <div className="flex-1 min-w-0">
-                <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
+                <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
+                <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
               </div>
-              <span className="text-xs text-foreground/40">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>
