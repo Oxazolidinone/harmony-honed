@@ -2,17 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { motion } from "framer-motion";
-import { Music, Disc3, Headphones } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-
-const floatingIcons = [
-  { Icon: Music, x: "15%", y: "20%", delay: 0, size: 18 },
-  { Icon: Disc3, x: "75%", y: "15%", delay: 0.8, size: 22 },
-  { Icon: Headphones, x: "60%", y: "70%", delay: 1.6, size: 20 },
-  { Icon: Music, x: "30%", y: "80%", delay: 2.4, size: 16 },
-  { Icon: Disc3, x: "85%", y: "45%", delay: 0.4, size: 14 },
-  { Icon: Music, x: "45%", y: "35%", delay: 1.2, size: 20 },
-];
+import bgAuth from "@/assets/bg-auth.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,7 +35,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left - image */}
+      {/* Left - image (desktop) */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <img src={heroBg} alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-background/20" />
@@ -56,34 +47,21 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right - form with decorative elements */}
-      <div className="flex-1 relative overflow-hidden bg-background">
-        {/* Floating music icons */}
-        {floatingIcons.map((item, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-primary/10"
-            style={{ left: item.x, top: item.y }}
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, 10, -10, 0],
-              opacity: [0.08, 0.15, 0.08],
-            }}
-            transition={{
-              duration: 5 + i,
-              repeat: Infinity,
-              delay: item.delay,
-              ease: "easeInOut",
-            }}
-          >
-            <item.Icon size={item.size} />
-          </motion.div>
-        ))}
+      {/* Right - form */}
+      <div className="flex-1 relative overflow-hidden">
+        {/* Background image with warm overlay */}
+        <div className="absolute inset-0">
+          <img src={bgAuth} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+        </div>
 
-        {/* Decorative circles */}
-        <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-primary/5" />
-        <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-accent/5" />
-        <div className="absolute top-1/3 right-10 w-1 h-32 bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
+        {/* Decorative accent line */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-primary/30 to-transparent" />
+        <div className="absolute bottom-0 right-12 w-px h-32 bg-gradient-to-t from-primary/20 to-transparent hidden lg:block" />
+
+        {/* Warm glow accents */}
+        <div className="absolute top-20 right-10 w-40 h-40 rounded-full bg-primary/8 blur-3xl" />
+        <div className="absolute bottom-32 left-8 w-32 h-32 rounded-full bg-accent/10 blur-2xl" />
 
         {/* Form */}
         <div className="relative z-10 flex items-center justify-center min-h-screen px-6">
@@ -93,7 +71,7 @@ const Login = () => {
             transition={{ duration: 0.6 }}
             className="w-full max-w-sm"
           >
-            <a href="/" className="font-display text-2xl tracking-[0.3em] text-foreground block mb-12">
+            <a href="/" className="font-display text-2xl tracking-[0.3em] text-foreground block mb-10">
               NHACCUATU
             </a>
 
@@ -105,7 +83,7 @@ const Login = () => {
               type="button"
               onClick={handleGoogleLogin}
               disabled={loading}
-              className="w-full flex items-center justify-center gap-3 border border-border px-4 py-3 text-sm font-body hover:bg-card/60 transition-colors rounded-lg mb-6 disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-3 bg-card/70 backdrop-blur border border-border/60 px-4 py-3 text-sm font-body hover:bg-card transition-colors rounded-xl mb-6 disabled:opacity-50 shadow-sm"
             >
               <svg width="18" height="18" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -116,11 +94,10 @@ const Login = () => {
               Đăng nhập với Google
             </button>
 
-            {/* Divider */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-border/60" />
               <span className="text-xs text-foreground/40 font-body tracking-wider">HOẶC</span>
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-border/60" />
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -130,7 +107,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border border-border px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-lg font-body"
+                  className="w-full bg-card/50 backdrop-blur border border-border/60 px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-xl font-body"
                   placeholder="you@example.com"
                   required
                 />
@@ -141,7 +118,7 @@ const Login = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-transparent border border-border px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-lg font-body"
+                  className="w-full bg-card/50 backdrop-blur border border-border/60 px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none transition-colors rounded-xl font-body"
                   placeholder="••••••••"
                   required
                 />
@@ -149,7 +126,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-foreground text-background py-3 text-sm tracking-wider hover:bg-foreground/90 transition-colors disabled:opacity-50 rounded-lg font-body"
+                className="w-full bg-foreground text-background py-3 text-sm tracking-wider hover:bg-foreground/90 transition-colors disabled:opacity-50 rounded-xl font-body shadow-md"
               >
                 {loading ? "ĐANG XỬ LÝ..." : "ĐĂNG NHẬP"}
               </button>
@@ -162,8 +139,7 @@ const Login = () => {
               </Link>
             </p>
 
-            {/* Bottom decorative text */}
-            <p className="text-center text-[10px] tracking-[0.4em] text-foreground/20 mt-12 font-body">
+            <p className="text-center text-[10px] tracking-[0.4em] text-foreground/20 mt-10 font-body">
               MUSIC · SOUL · HARMONY
             </p>
           </motion.div>
