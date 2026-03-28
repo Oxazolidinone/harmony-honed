@@ -3,6 +3,7 @@ import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app/AppSidebar";
 import MusicPlayer from "@/components/app/MusicPlayer";
+import ThemeSwitcher from "@/components/app/ThemeSwitcher";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePlayer } from "@/contexts/PlayerContext";
 import AppMainPage from "@/pages/app/MainPage";
@@ -45,6 +46,7 @@ const AppLayout = () => {
               )}
             </div>
             <div className="flex items-center gap-3">
+              <ThemeSwitcher compact />
               <span className="text-[9px] tracking-[0.3em] text-muted-foreground/30 font-body">NHACCUATU</span>
             </div>
           </header>

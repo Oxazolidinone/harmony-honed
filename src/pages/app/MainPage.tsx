@@ -46,7 +46,7 @@ const Section = ({
       style={
         bgImage
           ? {
-              backgroundImage: `linear-gradient(hsl(40 20% 96% / 0.58), hsl(40 20% 96% / 0.65)), url(${bgImage})`,
+              backgroundImage: `linear-gradient(hsl(var(--section-overlay) / 0.58), hsl(var(--section-overlay) / 0.65)), url(${bgImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundAttachment: "fixed",

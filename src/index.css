@@ -1,39 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
+  /* ═══════ DEFAULT THEME — Warm Classical ═══════ */
+  :root,
+  [data-theme="default"] {
     --background: 40 20% 95%;
     --foreground: 25 15% 10%;
-
     --card: 38 18% 89%;
     --card-foreground: 25 15% 10%;
-
     --popover: 38 18% 91%;
     --popover-foreground: 25 15% 10%;
-
     --primary: 28 55% 35%;
     --primary-foreground: 40 20% 95%;
-
     --secondary: 35 15% 83%;
     --secondary-foreground: 25 15% 12%;
-
     --muted: 35 12% 86%;
     --muted-foreground: 25 10% 38%;
-
     --accent: 28 55% 35%;
     --accent-foreground: 40 20% 95%;
-
     --destructive: 0 65% 50%;
     --destructive-foreground: 40 20% 95%;
-
     --border: 30 12% 75%;
     --input: 30 12% 75%;
     --ring: 28 55% 35%;
-
     --radius: 0.75rem;
 
     --font-display: 'Cormorant Garamond', serif;
@@ -47,6 +40,84 @@
     --sidebar-accent-foreground: 25 15% 12%;
     --sidebar-border: 30 12% 75%;
     --sidebar-ring: 28 55% 35%;
+
+    --section-overlay: 40 20% 96%;
+  }
+
+  /* ═══════ JAPANESE CLASSICAL ART ═══════ */
+  [data-theme="japanese"] {
+    --background: 45 30% 92%;
+    --foreground: 220 30% 15%;
+    --card: 42 25% 86%;
+    --card-foreground: 220 30% 15%;
+    --popover: 42 25% 88%;
+    --popover-foreground: 220 30% 15%;
+    --primary: 0 60% 42%;
+    --primary-foreground: 45 30% 94%;
+    --secondary: 42 20% 80%;
+    --secondary-foreground: 220 30% 15%;
+    --muted: 42 18% 83%;
+    --muted-foreground: 220 15% 35%;
+    --accent: 35 65% 48%;
+    --accent-foreground: 220 30% 12%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 45 30% 94%;
+    --border: 42 15% 72%;
+    --input: 42 15% 72%;
+    --ring: 0 60% 42%;
+    --radius: 0.5rem;
+
+    --font-display: 'Noto Serif JP', serif;
+    --font-body: 'Zen Kaku Gothic New', sans-serif;
+
+    --sidebar-background: 42 22% 88%;
+    --sidebar-foreground: 220 30% 15%;
+    --sidebar-primary: 0 60% 42%;
+    --sidebar-primary-foreground: 45 30% 94%;
+    --sidebar-accent: 42 20% 80%;
+    --sidebar-accent-foreground: 220 30% 15%;
+    --sidebar-border: 42 15% 72%;
+    --sidebar-ring: 0 60% 42%;
+
+    --section-overlay: 45 30% 92%;
+  }
+
+  /* ═══════ DARK FANTASY (Elden Ring inspired) ═══════ */
+  [data-theme="dark-fantasy"] {
+    --background: 230 20% 11%;
+    --foreground: 45 20% 88%;
+    --card: 230 18% 16%;
+    --card-foreground: 45 20% 88%;
+    --popover: 230 18% 14%;
+    --popover-foreground: 45 20% 88%;
+    --primary: 42 70% 50%;
+    --primary-foreground: 230 20% 8%;
+    --secondary: 230 15% 22%;
+    --secondary-foreground: 45 15% 78%;
+    --muted: 230 12% 20%;
+    --muted-foreground: 45 10% 55%;
+    --accent: 42 70% 50%;
+    --accent-foreground: 230 20% 8%;
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 45 20% 90%;
+    --border: 230 10% 28%;
+    --input: 230 10% 28%;
+    --ring: 42 70% 50%;
+    --radius: 0.25rem;
+
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Raleway', sans-serif;
+
+    --sidebar-background: 230 18% 9%;
+    --sidebar-foreground: 45 20% 88%;
+    --sidebar-primary: 42 70% 50%;
+    --sidebar-primary-foreground: 230 20% 8%;
+    --sidebar-accent: 230 15% 22%;
+    --sidebar-accent-foreground: 45 15% 78%;
+    --sidebar-border: 230 10% 28%;
+    --sidebar-ring: 42 70% 50%;
+
+    --section-overlay: 230 20% 11%;
   }
 }
 
@@ -76,7 +147,7 @@
 
   .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(30 45% 35%), hsl(35 55% 50%));
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
   }
 
   .section-fade-top {
@@ -89,7 +160,7 @@
     left: 0;
     right: 0;
     height: 160px;
-    background: linear-gradient(to bottom, hsl(40 20% 95% / 0), hsl(40 20% 95% / 1));
+    background: linear-gradient(to bottom, hsl(var(--section-overlay) / 0), hsl(var(--section-overlay) / 1));
     pointer-events: none;
     z-index: 10;
   }
@@ -100,7 +171,7 @@
     left: 0;
     right: 0;
     height: 160px;
-    background: linear-gradient(to top, hsl(40 20% 95% / 0), hsl(40 20% 95% / 1));
+    background: linear-gradient(to top, hsl(var(--section-overlay) / 0), hsl(var(--section-overlay) / 1));
     pointer-events: none;
     z-index: 10;
   }
@@ -141,4 +212,9 @@ html {
 }
 .cursor-grab:active {
   cursor: grabbing;
+}
+
+/* Theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.15s ease, border-color 0.3s ease;
 }
