@@ -100,15 +100,15 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       <Section id="home" bgImage={bgHome} onVisible={onActiveSection}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 className="font-display text-4xl md:text-6xl font-light italic mb-2">{greetingTime()}</h1>
-          <p className="text-foreground/60 text-base font-body">Tiếp tục hành trình âm nhạc của bạn</p>
+          <p className="text-foreground/80 text-base font-body">Tiếp tục hành trình âm nhạc của bạn</p>
         </motion.div>
 
         {/* Recently played */}
         <div className="mt-10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary/40 text-xs font-body">01</span>
-            <Clock size={14} className="text-muted-foreground" />
-            <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">NGHE GẦN ĐÂY</h2>
+            <span className="text-primary/60 text-xs font-body">01</span>
+            <Clock size={14} className="text-foreground/70" />
+            <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">NGHE GẦN ĐÂY</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             {recentlyPlayed.map((song, i) => (
@@ -123,7 +123,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 <img src={song.album.image} alt="" className="w-14 h-14 object-cover flex-shrink-0 rounded-l-xl" />
                 <div className="min-w-0 flex-1 pr-3">
                   <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">{song.title}</p>
-                  <p className="text-xs text-muted-foreground truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/70 truncate">{song.artist.name}</p>
                 </div>
               </motion.button>
             ))}
@@ -133,8 +133,8 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
         {/* Playlists */}
         <div className="mt-12">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary/40 text-xs font-body">02</span>
-            <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">DÀNH CHO BẠN</h2>
+            <span className="text-primary/60 text-xs font-body">02</span>
+            <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">DÀNH CHO BẠN</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {playlists.map((pl, i) => (
@@ -155,7 +155,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                   </div>
                 </div>
                 <h3 className="font-display text-lg italic group-hover:text-primary transition-colors">{pl.name}</h3>
-                <p className="text-xs text-foreground/50 font-body mt-0.5">{pl.description}</p>
+                <p className="text-xs text-foreground/70 font-body mt-0.5">{pl.description}</p>
               </motion.div>
             ))}
           </div>
@@ -166,9 +166,9 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       <Section id="discover" bgImage={bgDiscover} onVisible={onActiveSection}>
         <div className="section-fade-top" />
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-primary/40 text-xs font-body">03</span>
-          <Disc3 size={14} className="text-muted-foreground" />
-          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">KHÁM PHÁ · ALBUM MỚI</h2>
+          <span className="text-primary/60 text-xs font-body">03</span>
+          <Disc3 size={14} className="text-foreground/70" />
+          <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">KHÁM PHÁ · ALBUM MỚI</h2>
         </div>
 
         <div className="flex gap-5 overflow-x-auto no-scrollbar pb-4">
@@ -186,14 +186,14 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <h3 className="font-display text-lg italic group-hover:text-primary transition-colors">{album.title}</h3>
-              <p className="text-xs text-foreground/50 font-body">{album.artist.name} · {album.year}</p>
+              <p className="text-xs text-foreground/70 font-body">{album.artist.name} · {album.year}</p>
             </motion.div>
           ))}
         </div>
 
         {/* All albums */}
         <div className="mt-12">
-          <h3 className="text-xs tracking-[0.3em] text-foreground/50 font-body mb-4">TẤT CẢ ALBUM</h3>
+          <h3 className="text-xs tracking-[0.3em] text-foreground/70 font-body mb-4">TẤT CẢ ALBUM</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {albums.map((album) => (
               <div
@@ -205,7 +205,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                   <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{album.title}</p>
-                <p className="text-xs text-muted-foreground font-body truncate">{album.artist.name}</p>
+                <p className="text-xs text-foreground/70 font-body truncate">{album.artist.name}</p>
               </div>
             ))}
           </div>
@@ -215,9 +215,9 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       {/* ═══════════ ARTISTS ═══════════ */}
       <Section id="artists" bgImage={bgArtists} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-8">
-          <span className="text-primary/40 text-xs font-body">04</span>
-          <Music size={14} className="text-muted-foreground" />
-          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">NGHỆ SĨ</h2>
+          <span className="text-primary/60 text-xs font-body">04</span>
+          <Music size={14} className="text-foreground/70" />
+          <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">NGHỆ SĨ</h2>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -235,8 +235,8 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 <img src={artist.image} alt={artist.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <h3 className="font-display text-xl italic group-hover:text-primary transition-colors">{artist.name}</h3>
-              <p className="text-xs text-muted-foreground font-body mt-1">{formatNumber(artist.monthlyListeners)} listeners</p>
-              <p className="text-[10px] text-foreground/30 font-body mt-0.5">{artist.genres.join(" · ")}</p>
+              <p className="text-xs text-foreground/70 font-body mt-1">{formatNumber(artist.monthlyListeners)} listeners</p>
+              <p className="text-[10px] text-foreground/80 font-body mt-0.5">{artist.genres.join(" · ")}</p>
             </motion.div>
           ))}
         </div>
@@ -245,13 +245,13 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       {/* ═══════════ SEARCH ═══════════ */}
       <Section id="search" bgImage={bgSearch} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-primary/40 text-xs font-body">05</span>
-          <SearchIcon size={14} className="text-muted-foreground" />
-          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">TÌM KIẾM</h2>
+          <span className="text-primary/60 text-xs font-body">05</span>
+          <SearchIcon size={14} className="text-foreground/70" />
+          <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">TÌM KIẾM</h2>
         </div>
 
         <div className="relative mb-8">
-          <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-foreground/70" />
           <input
             type="text"
             value={searchQuery}
@@ -269,7 +269,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
               className={`flex-shrink-0 px-5 py-2.5 text-xs tracking-wider rounded-full transition-all ${
                 activeGenre === g
                   ? "bg-foreground text-background shadow-md"
-                  : "bg-card/50 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-card/70"
+                  : "bg-card/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-card/70"
               }`}
             >
               {g}
@@ -280,13 +280,13 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
         {!hasSearchResults && !searchQuery && activeGenre === "Tất cả" && (
           <div className="text-center py-16">
             <p className="font-display text-5xl text-foreground/20 italic mb-3">Khám phá</p>
-            <p className="text-base text-foreground/30 font-body">Tìm kiếm hoặc chọn thể loại</p>
+            <p className="text-base text-foreground/80 font-body">Tìm kiếm hoặc chọn thể loại</p>
           </div>
         )}
 
         {searchResults.artists.length > 0 && (
           <div className="mb-8">
-            <h3 className="text-xs tracking-[0.3em] text-muted-foreground font-body mb-4">NGHỆ SĨ</h3>
+            <h3 className="text-xs tracking-[0.3em] text-foreground/70 font-body mb-4">NGHỆ SĨ</h3>
             <div className="flex gap-5 overflow-x-auto no-scrollbar">
               {searchResults.artists.map((artist) => (
                 <div key={artist.id} onClick={() => navigate(`/app/artist/${artist.id}`)} className="flex-shrink-0 w-36 text-center group cursor-pointer">
@@ -300,7 +300,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
 
         {searchResults.albums.length > 0 && (
           <div className="mb-8">
-            <h3 className="text-xs tracking-[0.3em] text-muted-foreground font-body mb-4">ALBUM</h3>
+            <h3 className="text-xs tracking-[0.3em] text-foreground/70 font-body mb-4">ALBUM</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {searchResults.albums.map((album) => (
                 <div key={album.id} onClick={() => navigate(`/app/album/${album.id}`)} className="group cursor-pointer">
@@ -308,7 +308,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                     <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   </div>
                   <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{album.title}</p>
-                  <p className="text-xs text-muted-foreground font-body truncate">{album.artist.name}</p>
+                  <p className="text-xs text-foreground/70 font-body truncate">{album.artist.name}</p>
                 </div>
               ))}
             </div>
@@ -331,9 +331,9 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/70 font-body truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/80 font-body">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>
@@ -343,9 +343,9 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       {/* ═══════════ CHARTS ═══════════ */}
       <Section id="charts" bgImage={bgCharts} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-8">
-          <span className="text-primary/40 text-xs font-body">06</span>
-          <TrendingUp size={14} className="text-muted-foreground" />
-          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">XẾP HẠNG · THỊNH HÀNH</h2>
+          <span className="text-primary/60 text-xs font-body">06</span>
+          <TrendingUp size={14} className="text-foreground/70" />
+          <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">XẾP HẠNG · THỊNH HÀNH</h2>
         </div>
 
         <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
@@ -363,17 +363,17 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
               <img src={song.album.image} alt="" className="w-14 h-14 object-cover flex-shrink-0 rounded-lg shadow-sm" />
               <div className="flex-1 min-w-0">
                 <p className="text-lg font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
-                <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name} · {song.album.title}</p>
+                <p className="text-xs text-foreground/70 font-body truncate">{song.artist.name} · {song.album.title}</p>
               </div>
-              <span className="text-xs text-foreground/40 font-body">{formatNumber(song.playCount)}</span>
-              <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/80 font-body">{formatNumber(song.playCount)}</span>
+              <span className="text-xs text-foreground/80 font-body">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>
 
         {/* More trending from all songs */}
         <div className="mt-8">
-          <h3 className="text-xs tracking-[0.3em] text-foreground/50 font-body mb-4">ĐANG LÊN</h3>
+          <h3 className="text-xs tracking-[0.3em] text-foreground/70 font-body mb-4">ĐANG LÊN</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[...allSongs].sort((a, b) => b.playCount - a.playCount).slice(5, 13).map((song) => (
               <button
@@ -384,7 +384,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 <img src={song.album.image} alt="" className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-display italic truncate group-hover:text-primary transition-colors">{song.title}</p>
-                  <p className="text-[10px] text-muted-foreground font-body truncate">{song.artist.name}</p>
+                  <p className="text-[10px] text-foreground/70 font-body truncate">{song.artist.name}</p>
                 </div>
               </button>
             ))}
@@ -395,9 +395,9 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
       {/* ═══════════ LIBRARY ═══════════ */}
       <Section id="library" bgImage={bgLibrary} onVisible={onActiveSection}>
         <div className="flex items-center gap-3 mb-2">
-          <span className="text-primary/40 text-xs font-body">07</span>
-          <ListMusic size={14} className="text-muted-foreground" />
-          <h2 className="text-xs tracking-[0.3em] text-foreground/50 font-body">THƯ VIỆN</h2>
+          <span className="text-primary/60 text-xs font-body">07</span>
+          <ListMusic size={14} className="text-foreground/70" />
+          <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">THƯ VIỆN</h2>
         </div>
         <h2 className="font-display text-4xl md:text-5xl font-light italic mb-8">Thư viện</h2>
 
@@ -414,7 +414,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
               className={`flex items-center gap-2 px-5 py-2.5 text-xs tracking-wider rounded-full transition-all ${
                 libraryTab === t.key
                   ? "bg-foreground text-background shadow-md"
-                  : "bg-card/50 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-card/70"
+                  : "bg-card/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-card/70"
               }`}
             >
               <t.icon size={14} />
@@ -427,11 +427,11 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
           <div>
             <button className="flex items-center gap-4 w-full p-5 border border-dashed border-border/60 rounded-2xl hover:border-primary/50 hover:bg-card/30 transition-all mb-6 group">
               <div className="w-14 h-14 flex items-center justify-center bg-muted/60 rounded-xl">
-                <Plus size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                <Plus size={20} className="text-foreground/70 group-hover:text-primary transition-colors" />
               </div>
               <div className="text-left">
                 <p className="text-sm font-display italic">Tạo playlist mới</p>
-                <p className="text-xs text-foreground/50 font-body">Bắt đầu bộ sưu tập của bạn</p>
+                <p className="text-xs text-foreground/70 font-body">Bắt đầu bộ sưu tập của bạn</p>
               </div>
             </button>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -448,7 +448,7 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                   <img src={pl.image} alt={pl.name} className="w-16 h-16 object-cover flex-shrink-0 rounded-xl shadow-sm" />
                   <div className="flex-1 min-w-0">
                     <p className="font-display text-base italic group-hover:text-primary transition-colors truncate">{pl.name}</p>
-                    <p className="text-xs text-foreground/50 font-body">{pl.songs.length} bài · {pl.createdBy}</p>
+                    <p className="text-xs text-foreground/70 font-body">{pl.songs.length} bài · {pl.createdBy}</p>
                   </div>
                 </motion.div>
               ))}
@@ -468,9 +468,9 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/70 font-body truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/80 font-body">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>
@@ -484,13 +484,13 @@ const AppMainPage = ({ onActiveSection }: AppMainPageProps) => {
                 onClick={() => playSong(song, recentlyPlayed)}
                 className="w-full flex items-center gap-4 py-3.5 px-5 border-b border-border/30 last:border-b-0 hover:bg-card/60 transition-colors group text-left"
               >
-                <span className="text-sm font-display text-primary/40 w-6">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-sm font-display text-primary/60 w-6">{String(i + 1).padStart(2, "0")}</span>
                 <img src={song.album.image} alt="" className="w-11 h-11 object-cover flex-shrink-0 rounded-lg" />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/70 font-body truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/80 font-body">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>
