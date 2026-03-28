@@ -14,7 +14,7 @@ const HeroSection = () => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section ref={ref} className="relative h-screen overflow-hidden">
+    <section ref={ref} className="relative h-screen overflow-hidden section-fade-bottom">
       {/* Parallax Background */}
       <motion.div
         style={{ y, scale }}
@@ -27,7 +27,7 @@ const HeroSection = () => {
           height={1080}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-background/20" />
       </motion.div>
 
       {/* Content */}

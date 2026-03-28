@@ -40,7 +40,7 @@ const ReleasesSection = () => {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <section id="releases" ref={ref} className="py-24 md:py-32">
+    <section id="releases" ref={ref} className="relative py-24 md:py-32 section-fade-top section-fade-bottom">
       {/* Section header */}
       <div className="px-6 md:px-12 mb-16">
         <motion.div

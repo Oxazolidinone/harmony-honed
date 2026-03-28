@@ -24,7 +24,7 @@ const NewsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="news" ref={ref} className="py-24 md:py-32 px-6 md:px-12">
+    <section id="news" ref={ref} className="relative py-24 md:py-32 px-6 md:px-12 section-fade-top section-fade-bottom">
       <div className="flex items-start justify-between mb-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
