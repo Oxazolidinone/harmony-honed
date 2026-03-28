@@ -30,7 +30,7 @@ const AppHome = () => {
     >
       {/* Vertical accent text */}
       <div className="absolute right-4 top-24 hidden lg:block">
-        <p className="writing-vertical text-xs tracking-[0.5em] text-foreground/15 font-body">NHACCUATU · 音楽</p>
+        <p className="writing-vertical text-xs tracking-[0.5em] text-foreground/10 font-body">NHACCUATU</p>
       </div>
 
       <div className="px-6 md:px-10 py-8">
@@ -40,7 +40,7 @@ const AppHome = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-3">ホーム · HOME</p>
+        <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-3">HOME</p>
         <h1 className="font-display text-4xl md:text-5xl font-light mb-2 italic">{greetingTime()}</h1>
         <p className="text-foreground/60 text-base">Tiếp tục hành trình âm nhạc của bạn</p>
       </motion.div>
