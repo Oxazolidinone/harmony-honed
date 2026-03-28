@@ -68,7 +68,7 @@ const AppLibrary = () => {
             </div>
             <div className="text-left">
               <p className="text-sm font-medium">Tạo playlist mới</p>
-              <p className="text-[11px] text-muted-foreground">Bắt đầu bộ sưu tập của bạn</p>
+              <p className="text-xs text-foreground/50">Bắt đầu bộ sưu tập của bạn</p>
             </div>
           </button>
 
@@ -85,7 +85,7 @@ const AppLibrary = () => {
                 <img src={pl.image} alt={pl.name} className="w-14 h-14 object-cover flex-shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium group-hover:text-primary transition-colors truncate">{pl.name}</p>
-                  <p className="text-[11px] text-muted-foreground">{pl.songs.length} bài · {pl.createdBy}</p>
+                  <p className="text-xs text-foreground/50">{pl.songs.length} bài · {pl.createdBy}</p>
                 </div>
               </motion.div>
             ))}
@@ -109,9 +109,9 @@ const AppLibrary = () => {
               <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                <p className="text-[11px] text-muted-foreground truncate">{song.artist.name}</p>
+                <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
               </div>
-              <span className="text-[11px] text-muted-foreground">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>
@@ -133,9 +133,9 @@ const AppLibrary = () => {
               <img src={song.album.image} alt="" className="w-10 h-10 object-cover flex-shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                <p className="text-[11px] text-muted-foreground truncate">{song.artist.name}</p>
+                <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
               </div>
-              <span className="text-[11px] text-muted-foreground">{formatDuration(song.duration)}</span>
+              <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
             </motion.button>
           ))}
         </div>

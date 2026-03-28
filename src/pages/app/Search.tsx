@@ -144,9 +144,9 @@ const AppSearch = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-[11px] text-muted-foreground truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/50 truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-[11px] text-muted-foreground">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/50">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>
