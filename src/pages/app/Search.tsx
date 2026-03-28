@@ -4,6 +4,7 @@ import { Search as SearchIcon, Play } from "lucide-react";
 import { usePlayer } from "@/contexts/PlayerContext";
 import { allSongs, albums, artists, genres, formatDuration } from "@/data/mockData";
 import { useNavigate } from "react-router-dom";
+import bgSearch from "@/assets/bg-search.jpg";
 
 const AppSearch = () => {
   const [query, setQuery] = useState("");
@@ -37,7 +38,12 @@ const AppSearch = () => {
   const hasResults = results.songs.length > 0 || results.albums.length > 0 || results.artists.length > 0;
 
   return (
-    <div className="px-6 md:px-10 py-8">
+    <div className="relative min-h-full">
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <img src={bgSearch} alt="" className="w-full h-full object-cover opacity-25" />
+        <div className="absolute inset-0 bg-background/60" />
+      </div>
+      <div className="px-6 md:px-10 py-8 relative">
       {/* Search bar */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative mb-8">
         <SearchIcon size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -142,6 +148,7 @@ const AppSearch = () => {
           </div>
         </section>
       )}
+      </div>
     </div>
   );
 };
