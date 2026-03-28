@@ -35,7 +35,7 @@ const AppLibrary = () => {
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-display text-3xl mb-6"
+        className="font-display text-4xl md:text-5xl font-light mb-8"
       >
         Thư viện
       </motion.h1>
