@@ -53,11 +53,11 @@ const AppSearch = () => {
       </div>
 
       <div className="px-6 md:px-10 py-8">
-      <p className="text-[10px] tracking-[0.4em] text-muted-foreground font-body mb-6">検索 · SEARCH</p>
+      <p className="text-[10px] tracking-[0.4em] text-foreground/70 font-body mb-6">検索 · SEARCH</p>
 
       {/* Search bar */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative mb-8">
-        <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+        <SearchIcon size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-foreground/70" />
         <input
           type="text"
           value={query}
@@ -76,7 +76,7 @@ const AppSearch = () => {
             className={`flex-shrink-0 px-5 py-2.5 text-xs tracking-wider rounded-full transition-all ${
               activeGenre === g
                 ? "bg-foreground text-background shadow-md"
-                : "bg-card/50 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground hover:bg-card/70"
+                : "bg-card/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-card/70"
             }`}
           >
             {g}
@@ -86,8 +86,8 @@ const AppSearch = () => {
 
       {!hasResults && !query && activeGenre === "Tất cả" && (
         <div className="text-center py-24">
-          <p className="font-display text-5xl text-foreground/30 italic mb-3">Khám phá</p>
-          <p className="text-base text-foreground/40 font-body">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
+          <p className="font-display text-5xl text-foreground/80 italic mb-3">Khám phá</p>
+          <p className="text-base text-foreground/80 font-body">Tìm kiếm hoặc chọn thể loại để bắt đầu</p>
         </div>
       )}
 
@@ -95,8 +95,8 @@ const AppSearch = () => {
       {results.artists.length > 0 && (
         <section className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary/40 font-body text-xs">01</span>
-            <h2 className="text-xs tracking-[0.3em] text-muted-foreground font-body">NGHỆ SĨ</h2>
+            <span className="text-primary/60 font-body text-xs">01</span>
+            <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">NGHỆ SĨ</h2>
           </div>
           <div className="flex gap-5 overflow-x-auto no-scrollbar">
             {results.artists.map((artist) => (
@@ -117,8 +117,8 @@ const AppSearch = () => {
       {results.albums.length > 0 && (
         <section className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary/40 font-body text-xs">02</span>
-            <h2 className="text-xs tracking-[0.3em] text-muted-foreground font-body">ALBUM</h2>
+            <span className="text-primary/60 font-body text-xs">02</span>
+            <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">ALBUM</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {results.albums.map((album) => (
@@ -131,7 +131,7 @@ const AppSearch = () => {
                   <img src={album.image} alt={album.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{album.title}</p>
-                <p className="text-xs text-muted-foreground font-body truncate">{album.artist.name}</p>
+                <p className="text-xs text-foreground/70 font-body truncate">{album.artist.name}</p>
               </div>
             ))}
           </div>
@@ -142,8 +142,8 @@ const AppSearch = () => {
       {results.songs.length > 0 && (
         <section>
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-primary/40 font-body text-xs">03</span>
-            <h2 className="text-xs tracking-[0.3em] text-muted-foreground font-body">BÀI HÁT</h2>
+            <span className="text-primary/60 font-body text-xs">03</span>
+            <h2 className="text-xs tracking-[0.3em] text-foreground/70 font-body">BÀI HÁT</h2>
           </div>
           <div className="bg-card/40 backdrop-blur-md rounded-2xl overflow-hidden">
             {results.songs.map((song) => (
@@ -160,9 +160,9 @@ const AppSearch = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-display italic group-hover:text-primary transition-colors truncate">{song.title}</p>
-                  <p className="text-xs text-foreground/50 font-body truncate">{song.artist.name}</p>
+                  <p className="text-xs text-foreground/70 font-body truncate">{song.artist.name}</p>
                 </div>
-                <span className="text-xs text-foreground/40 font-body">{formatDuration(song.duration)}</span>
+                <span className="text-xs text-foreground/80 font-body">{formatDuration(song.duration)}</span>
               </button>
             ))}
           </div>
