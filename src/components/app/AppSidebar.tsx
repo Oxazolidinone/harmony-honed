@@ -1,6 +1,5 @@
-import { Home, Search, Library, Settings, LogOut, Crown } from "lucide-react";
-import { NavLink } from "@/components/NavLink";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Home, Search, Library, Settings, LogOut, Crown, Disc3, TrendingUp, Music } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   Sidebar,
@@ -16,63 +15,68 @@ import {
 } from "@/components/ui/sidebar";
 
 const mainNav = [
-  { title: "Trang chủ", sub: "ホーム", url: "/app", icon: Home },
-  { title: "Tìm kiếm", sub: "検索", url: "/app/search", icon: Search },
-  { title: "Thư viện", sub: "図書館", url: "/app/library", icon: Library },
+  { title: "Trang chủ", id: "home", icon: Home },
+  { title: "Khám phá", id: "discover", icon: Disc3 },
+  { title: "Nghệ sĩ", id: "artists", icon: Music },
+  { title: "Tìm kiếm", id: "search", icon: Search },
+  { title: "Xếp hạng", id: "charts", icon: TrendingUp },
+  { title: "Thư viện", id: "library", icon: Library },
 ];
 
-const settingsNav = [
-  { title: "Cài đặt", sub: "設定", url: "/app/settings", icon: Settings },
-];
+interface AppSidebarProps {
+  activeSection?: string;
+}
 
-export function AppSidebar() {
+export function AppSidebar({ activeSection }: AppSidebarProps) {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
-  const isActive = (path: string) => location.pathname === path;
+  const scrollToSection = (id: string) => {
+    // If we're on a detail page, navigate back to main first
+    if (window.location.pathname !== "/app") {
+      navigate("/app");
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border/30 bg-card/20 backdrop-blur-sm">
       <SidebarContent className="pt-6">
         {/* Logo */}
-        <div className="px-4 mb-10">
-          <a
-            href="/app"
-            className="font-display text-lg tracking-[0.3em] text-foreground block"
+        <div className="px-4 mb-8">
+          <button
+            onClick={() => scrollToSection("home")}
+            className="font-display text-lg tracking-[0.3em] text-foreground block text-left"
           >
             {collapsed ? "N" : "NHACCUATU"}
-          </a>
+          </button>
           {!collapsed && (
-            <p className="text-[9px] tracking-[0.3em] text-muted-foreground/50 font-body mt-1">音楽の旅 · SOUND JOURNEY</p>
+            <p className="text-[9px] tracking-[0.2em] text-muted-foreground/40 font-body mt-1">Where Sound Becomes Art</p>
           )}
         </div>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[9px] tracking-[0.4em] text-muted-foreground/60 font-body mb-1">
-            {!collapsed && "NAVIGATE · ナビ"}
+          <SidebarGroupLabel className="text-[9px] tracking-[0.4em] text-muted-foreground/50 font-body mb-1">
+            {!collapsed && "MENU"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNav.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink
-                      to={item.url}
-                      end={item.url === "/app"}
-                      className={`rounded-xl hover:bg-muted/40 transition-all ${isActive(item.url) ? "bg-muted/60 text-primary" : ""}`}
-                      activeClassName="bg-muted/60 text-primary"
-                    >
-                      <item.icon className="mr-3 h-4 w-4" />
-                      {!collapsed && (
-                        <div className="flex flex-col">
-                          <span className="text-sm font-body">{item.title}</span>
-                          <span className="text-[8px] tracking-wider text-muted-foreground/50">{item.sub}</span>
-                        </div>
-                      )}
-                    </NavLink>
+                <SidebarMenuItem key={item.id}>
+                  <SidebarMenuButton
+                    onClick={() => scrollToSection(item.id)}
+                    className={`rounded-xl hover:bg-muted/40 transition-all cursor-pointer ${
+                      activeSection === item.id ? "bg-muted/60 text-primary" : ""
+                    }`}
+                  >
+                    <item.icon className="mr-3 h-4 w-4" />
+                    {!collapsed && <span className="text-sm font-body">{item.title}</span>}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -83,37 +87,27 @@ export function AppSidebar() {
         {/* Decorative separator */}
         {!collapsed && (
           <div className="mx-4 my-4 flex items-center gap-3">
-            <div className="flex-1 h-[0.5px] bg-border/30" />
-            <span className="text-[8px] text-primary/30">✦</span>
-            <div className="flex-1 h-[0.5px] bg-border/30" />
+            <div className="flex-1 h-[0.5px] bg-border/20" />
+            <span className="text-[8px] text-primary/20">✦</span>
+            <div className="flex-1 h-[0.5px] bg-border/20" />
           </div>
         )}
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[9px] tracking-[0.4em] text-muted-foreground/60 font-body mb-1">
-            {!collapsed && "OTHER · 他"}
+          <SidebarGroupLabel className="text-[9px] tracking-[0.4em] text-muted-foreground/50 font-body mb-1">
+            {!collapsed && "OTHER"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {settingsNav.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink
-                      to={item.url}
-                      className="rounded-xl hover:bg-muted/40 transition-all"
-                      activeClassName="bg-muted/60 text-primary"
-                    >
-                      <item.icon className="mr-3 h-4 w-4" />
-                      {!collapsed && (
-                        <div className="flex flex-col">
-                          <span className="text-sm font-body">{item.title}</span>
-                          <span className="text-[8px] tracking-wider text-muted-foreground/50">{item.sub}</span>
-                        </div>
-                      )}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  onClick={() => navigate("/app/settings")}
+                  className="rounded-xl hover:bg-muted/40 transition-all cursor-pointer"
+                >
+                  <Settings className="mr-3 h-4 w-4" />
+                  {!collapsed && <span className="text-sm font-body">Cài đặt</span>}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -125,7 +119,7 @@ export function AppSidebar() {
               <Crown size={14} className="text-primary" />
               <span className="text-xs font-display italic text-foreground">Nâng cấp Premium</span>
             </div>
-            <p className="text-[10px] text-muted-foreground/70 leading-relaxed mb-3 font-body">
+            <p className="text-[10px] text-muted-foreground/60 leading-relaxed mb-3 font-body">
               Nghe nhạc không giới hạn, không quảng cáo
             </p>
             <button
@@ -136,23 +130,16 @@ export function AppSidebar() {
             </button>
           </div>
         )}
-
-        {/* Vertical text decoration */}
-        {!collapsed && (
-          <div className="mt-auto px-5 py-6">
-            <p className="text-[8px] tracking-[0.5em] text-foreground/10 font-body">WHERE SOUND BECOMES ART</p>
-          </div>
-        )}
       </SidebarContent>
 
-      <SidebarFooter className="p-3 border-t border-border/20">
+      <SidebarFooter className="p-3 border-t border-border/15">
         {user && (
           <div className="flex items-center gap-3 p-2">
             <img src={user.avatar} alt="" className="w-8 h-8 rounded-full object-cover flex-shrink-0 ring-1 ring-border/20" />
             {!collapsed && (
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-display italic text-foreground truncate">{user.name}</p>
-                <p className="text-[9px] text-muted-foreground/50 font-body tracking-wider truncate">{user.plan === "premium" ? "PREMIUM" : "FREE"}</p>
+                <p className="text-[9px] text-muted-foreground/40 font-body tracking-wider truncate">{user.plan === "premium" ? "PREMIUM" : "FREE"}</p>
               </div>
             )}
             {!collapsed && (
